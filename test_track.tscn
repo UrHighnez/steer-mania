@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://baawn2w8fbjpc"]
+[gd_scene load_steps=19 format=3 uid="uid://baawn2w8fbjpc"]
 
-[ext_resource type="Script" uid="uid://c13owiby5n1lo" path="res://car_controller.gd" id="1_tpaj3"]
-[ext_resource type="Script" uid="uid://dt36f412lyuw2" path="res://addons/orbit_camera/orbit_camera.gd" id="2_dd2be"]
+[ext_resource type="Script" uid="uid://c13owiby5n1lo" path="res://car_controller.gd" id="2_dd2be"]
+[ext_resource type="Script" uid="uid://bc2kqlh02egte" path="res://addons/orbit_camera/orbit_camera.gd" id="2_t3gmr"]
 
 [sub_resource type="Environment" id="Environment_sskuf"]
 
@@ -29,12 +29,6 @@ points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 material = SubResource("StandardMaterial3D_dd2be")
 text = "→"
 font_size = 32
-
-[sub_resource type="Environment" id="Environment_dd2be"]
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_t3gmr"]
-
-[sub_resource type="Compositor" id="Compositor_sl0jo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sskuf"]
 
@@ -89,20 +83,16 @@ mesh = SubResource("TextMesh_t3gmr")
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="."]
 center_of_mass_mode = 1
-script = ExtResource("1_tpaj3")
+script = ExtResource("2_dd2be")
 
 [node name="Camera Node" type="Node3D" parent="VehicleBody3D"]
 transform = Transform3D(-4.371139e-08, 0.25881904, -0.9659258, 0, 0.9659258, 0.25881904, 1, 1.131334e-08, -4.222196e-08, 0, 0, 0)
 
 [node name="OrbitCamera" type="Camera3D" parent="VehicleBody3D/Camera Node"]
-environment = SubResource("Environment_dd2be")
-attributes = SubResource("CameraAttributesPractical_t3gmr")
-compositor = SubResource("Compositor_sl0jo")
-fov = 80.0
-script = ExtResource("2_dd2be")
+script = ExtResource("2_t3gmr")
 DEFAULT_DISTANCE = 5.0
 ANCHOR_NODE_PATH = NodePath("..")
-metadata/_custom_type_script = "uid://dt36f412lyuw2"
+metadata/_custom_type_script = "uid://bc2kqlh02egte"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
 transform = Transform3D(0.50000006, 0, 1.7763568e-15, 0, 0.50000006, 4.440892e-16, 0, 0, 0.5, 0, 0, 0)
