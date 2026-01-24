@@ -103,13 +103,13 @@ transform = Transform3D(3, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_t3gmr")
 
 [node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="VehicleBody3D"]
-physics_interpolation_mode = 1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5, 0, 1)
+use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.5
 wheel_friction_slip = 1.0
-suspension_stiffness = 20.0
-suspension_max_force = 160.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
 damping_compression = 0.3
 damping_relaxation = 0.5
 
@@ -123,13 +123,13 @@ transform = Transform3D(1.305, -4.986889e-16, 1.7763568e-15, 0, -5.7043362e-08, 
 mesh = SubResource("TextMesh_sl0jo")
 
 [node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="VehicleBody3D"]
-physics_interpolation_mode = 1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5, 0, -1)
+use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.5
 wheel_friction_slip = 1.0
-suspension_stiffness = 20.0
-suspension_max_force = 160.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
 damping_compression = 0.3
 damping_relaxation = 0.5
 
@@ -143,12 +143,11 @@ transform = Transform3D(1.305, -4.986891e-16, 2.6645353e-15, 0, -5.704336e-08, -
 mesh = SubResource("TextMesh_sl0jo")
 
 [node name="VehicleWheel3D BR" type="VehicleWheel3D" parent="VehicleBody3D"]
-physics_interpolation_mode = 1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5, 0, 1)
 wheel_roll_influence = 0.5
 wheel_friction_slip = 1.0
-suspension_stiffness = 20.0
-suspension_max_force = 160.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
 damping_compression = 0.3
 damping_relaxation = 0.5
 
@@ -162,12 +161,11 @@ transform = Transform3D(1.305, -4.986891e-16, 1.7763568e-15, 0, -5.704336e-08, -
 mesh = SubResource("TextMesh_sl0jo")
 
 [node name="VehicleWheel3D BL" type="VehicleWheel3D" parent="VehicleBody3D"]
-physics_interpolation_mode = 1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5, 0, -1)
 wheel_roll_influence = 0.5
 wheel_friction_slip = 1.0
-suspension_stiffness = 20.0
-suspension_max_force = 160.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
 damping_compression = 0.3
 damping_relaxation = 0.5
 
