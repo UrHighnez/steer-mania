@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://baawn2w8fbjpc"]
+[gd_scene load_steps=16 format=3 uid="uid://baawn2w8fbjpc"]
 
 [ext_resource type="Script" uid="uid://c13owiby5n1lo" path="res://car_controller.gd" id="2_dd2be"]
 [ext_resource type="Script" uid="uid://bc2kqlh02egte" path="res://addons/orbit_camera/orbit_camera.gd" id="2_t3gmr"]
+[ext_resource type="PackedScene" uid="uid://ddgje6t11apg3" path="res://wheel.tscn" id="3_t3gmr"]
 
 [sub_resource type="Environment" id="Environment_sskuf"]
 
@@ -34,18 +35,6 @@ font_size = 32
 
 [sub_resource type="BoxMesh" id="BoxMesh_t3gmr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpaj3"]
-albedo_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_dd2be"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3gmr"]
-
-[sub_resource type="TextMesh" id="TextMesh_sl0jo"]
-material = SubResource("StandardMaterial3D_t3gmr")
-text = "✕"
-font_size = 64
-
 [node name="Test Track" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -57,7 +46,7 @@ compositor = SubResource("Compositor_sskuf")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, 0)
 
 [node name="Track Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(24.620193, 0.2604723, 0, -4.341205, 1.4772116, 0, 0, 0, 5, 20, -7, 0)
+transform = Transform3D(-1.0761828e-06, -1.13856045e-08, 5, -4.3412046, 1.4772116, 0, -24.620193, -0.26047227, -2.1855695e-07, 0, -5, -20)
 material_override = SubResource("StandardMaterial3D_sskuf")
 mesh = SubResource("PlaneMesh_tpaj3")
 skin = SubResource("Skin_sskuf")
@@ -82,11 +71,12 @@ transform = Transform3D(0.9998874, 0.07404734, 0.010579933, 0.010581017, 0.00078
 mesh = SubResource("TextMesh_t3gmr")
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+mass = 80.0
 center_of_mass_mode = 1
 script = ExtResource("2_dd2be")
 
 [node name="Camera Node" type="Node3D" parent="VehicleBody3D"]
-transform = Transform3D(-4.371139e-08, 0.25881904, -0.9659258, 0, 0.9659258, 0.25881904, 1, 1.131334e-08, -4.222196e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 0, 0)
 
 [node name="OrbitCamera" type="Camera3D" parent="VehicleBody3D/Camera Node"]
 script = ExtResource("2_t3gmr")
@@ -99,81 +89,53 @@ transform = Transform3D(0.50000006, 0, 1.7763568e-15, 0, 0.50000006, 4.440892e-1
 shape = SubResource("BoxShape3D_sskuf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
-transform = Transform3D(3, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("BoxMesh_t3gmr")
 
-[node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5, 0, 1)
-use_as_traction = true
-use_as_steering = true
-wheel_roll_influence = 0.5
-wheel_friction_slip = 1.0
-suspension_travel = 0.1
-suspension_stiffness = 50.0
-damping_compression = 0.3
-damping_relaxation = 0.5
-
-[node name="TireMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D FR"]
-transform = Transform3D(-4.3711385e-08, -0.2, -4.371139e-08, 1, -8.742278e-09, 4.371139e-08, -4.3711392e-08, -8.742277e-09, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_tpaj3")
-mesh = SubResource("CylinderMesh_dd2be")
-
-[node name="RimMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D FR/TireMesh"]
-transform = Transform3D(1.305, -4.986889e-16, 1.7763568e-15, 0, -5.7043362e-08, -1.3050001, -1.4433147e-22, 1.305, -5.704336e-08, 0.030979846, 0.99105644, 0.052454233)
-mesh = SubResource("TextMesh_sl0jo")
-
-[node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5, 0, -1)
-use_as_traction = true
-use_as_steering = true
-wheel_roll_influence = 0.5
-wheel_friction_slip = 1.0
-suspension_travel = 0.1
-suspension_stiffness = 50.0
-damping_compression = 0.3
-damping_relaxation = 0.5
-
-[node name="TireMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D FL"]
-transform = Transform3D(-4.3711385e-08, -0.2, -4.3711385e-08, 1, -8.742278e-09, 4.3711395e-08, -4.37114e-08, -8.742276e-09, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_tpaj3")
-mesh = SubResource("CylinderMesh_dd2be")
-
-[node name="RimMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D FL/TireMesh"]
-transform = Transform3D(1.305, -4.986891e-16, 2.6645353e-15, 0, -5.704336e-08, -1.3050001, -3.9765484e-22, 1.305, -5.704336e-08, 0.03097983, -0.99410105, 0.052454233)
-mesh = SubResource("TextMesh_sl0jo")
-
 [node name="VehicleWheel3D BR" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.2)
 wheel_roll_influence = 0.5
-wheel_friction_slip = 1.0
+wheel_friction_slip = 5.0
 suspension_travel = 0.1
 suspension_stiffness = 50.0
 damping_compression = 0.3
 damping_relaxation = 0.5
 
-[node name="TireMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D BR"]
-transform = Transform3D(-4.3711385e-08, -0.2, -4.3711385e-08, 1, -8.742278e-09, 4.3711395e-08, -4.37114e-08, -8.742276e-09, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_tpaj3")
-mesh = SubResource("CylinderMesh_dd2be")
+[node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D BR" instance=ExtResource("3_t3gmr")]
 
-[node name="RimMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D BR/TireMesh"]
-transform = Transform3D(1.305, -4.986891e-16, 1.7763568e-15, 0, -5.704336e-08, -1.3050001, -3.9765484e-22, 1.305, -5.704336e-08, 0.030979844, 0.99105644, 0.052454233)
-mesh = SubResource("TextMesh_sl0jo")
+[node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.2)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.5
+wheel_friction_slip = 5.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+damping_compression = 0.3
+damping_relaxation = 0.5
+
+[node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D FR" instance=ExtResource("3_t3gmr")]
 
 [node name="VehicleWheel3D BL" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.2)
 wheel_roll_influence = 0.5
-wheel_friction_slip = 1.0
+wheel_friction_slip = 5.0
 suspension_travel = 0.1
 suspension_stiffness = 50.0
 damping_compression = 0.3
 damping_relaxation = 0.5
 
-[node name="TireMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D BL"]
-transform = Transform3D(-4.3711385e-08, -0.2, -4.3711385e-08, 1, -8.742278e-09, 4.3711395e-08, -4.37114e-08, -8.742276e-09, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_tpaj3")
-mesh = SubResource("CylinderMesh_dd2be")
+[node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D BL" instance=ExtResource("3_t3gmr")]
 
-[node name="RimMesh" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D BL/TireMesh"]
-transform = Transform3D(1.305, -4.986891e-16, 2.6645353e-15, 0, -5.704336e-08, -1.3050001, -3.9765484e-22, 1.305, -5.704336e-08, 0.030979827, -0.99410105, 0.052454233)
-mesh = SubResource("TextMesh_sl0jo")
+[node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1.2)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.5
+wheel_friction_slip = 5.0
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+damping_compression = 0.3
+damping_relaxation = 0.5
+
+[node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D FL" instance=ExtResource("3_t3gmr")]

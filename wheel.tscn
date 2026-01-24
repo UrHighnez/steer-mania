@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddgje6t11apg3"]
+
+[ext_resource type="PackedScene" uid="uid://bvqv4ofosa0ff" path="res://SM_Wheel.glb" id="1_8m8ww"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0ure"]
+albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8m8ww"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gwn81"]
+albedo_color = Color(0.32544088, 0.3254409, 0.32544088, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_mv24a"]
+text = "✕"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mgug"]
+albedo_color = Color(0.43134022, 0.43134025, 0.43134025, 1)
+
+[node name="SM_Wheel" instance=ExtResource("1_8m8ww")]
+
+[node name="Cylinder" parent="." index="0"]
+transform = Transform3D(-2.1855694e-08, 0.2, -2.1855694e-08, 0, -8.742278e-09, -0.5, -0.5, -8.742278e-09, 9.553427e-16, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_e0ure")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_8m8ww")
+surface_material_override/0 = SubResource("StandardMaterial3D_gwn81")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" index="0"]
+transform = Transform3D(-3.496911e-07, 8, -3.4969113e-07, 5.9095835e-14, -3.4969105e-07, -8, -8, -3.496911e-07, 8.552316e-22, 0.055118605, 0.9161444, -0.06060733)
+mesh = SubResource("TextMesh_mv24a")
+surface_material_override/0 = SubResource("StandardMaterial3D_3mgug")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" index="1"]
+transform = Transform3D(-5.656854, 5.656854, -2.4726896e-07, 3.410605e-13, -3.4969105e-07, -8, -5.656854, -5.656854, 2.4726896e-07, 0.005979337, 0.9161444, -0.11150907)
+mesh = SubResource("TextMesh_mv24a")
+surface_material_override/0 = SubResource("StandardMaterial3D_3mgug")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" index="2"]
+transform = Transform3D(-3.496911e-07, 8, -3.4969113e-07, 5.9095835e-14, -3.4969105e-07, -8, -8, -3.496911e-07, -2.131628e-14, 0.055118628, -1, -0.060607307)
+mesh = SubResource("TextMesh_mv24a")
+surface_material_override/0 = SubResource("StandardMaterial3D_3mgug")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" index="3"]
+transform = Transform3D(-5.656854, 5.656854, -2.4726896e-07, 3.410605e-13, -3.4969105e-07, -8, -5.656854, -5.656854, 2.4726896e-07, 0.00597936, -1, -0.11150904)
+mesh = SubResource("TextMesh_mv24a")
+surface_material_override/0 = SubResource("StandardMaterial3D_3mgug")
