@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://baawn2w8fbjpc"]
 
 [ext_resource type="Script" uid="uid://c13owiby5n1lo" path="res://car_controller.gd" id="2_dd2be"]
-[ext_resource type="Script" uid="uid://bc2kqlh02egte" path="res://addons/orbit_camera/orbit_camera.gd" id="2_t3gmr"]
+[ext_resource type="Script" uid="uid://bt43365dp4iqv" path="res://follow_camera.gd" id="3_sl0jo"]
 [ext_resource type="PackedScene" uid="uid://ddgje6t11apg3" path="res://wheel.tscn" id="3_t3gmr"]
 
 [sub_resource type="Environment" id="Environment_sskuf"]
@@ -32,6 +32,7 @@ text = "→"
 font_size = 32
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sskuf"]
+size = Vector3(1.5, 0.75, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t3gmr"]
 
@@ -75,17 +76,8 @@ mass = 80.0
 center_of_mass_mode = 1
 script = ExtResource("2_dd2be")
 
-[node name="Camera Node" type="Node3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 0, 0)
-
-[node name="OrbitCamera" type="Camera3D" parent="VehicleBody3D/Camera Node"]
-script = ExtResource("2_t3gmr")
-DEFAULT_DISTANCE = 5.0
-ANCHOR_NODE_PATH = NodePath("..")
-metadata/_custom_type_script = "uid://bc2kqlh02egte"
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
-transform = Transform3D(0.50000006, 0, 1.7763568e-15, 0, 0.50000006, 4.440892e-16, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("BoxShape3D_sskuf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
@@ -93,49 +85,45 @@ transform = Transform3D(1.5, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("BoxMesh_t3gmr")
 
 [node name="VehicleWheel3D BR" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.2)
-wheel_roll_influence = 0.5
-wheel_friction_slip = 5.0
-suspension_travel = 0.1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.12, 1.2)
+wheel_roll_influence = 0.8
+wheel_friction_slip = 1.8
 suspension_stiffness = 50.0
-damping_compression = 0.3
-damping_relaxation = 0.5
 
 [node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D BR" instance=ExtResource("3_t3gmr")]
 
 [node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.12, -1.2)
 use_as_traction = true
 use_as_steering = true
-wheel_roll_influence = 0.5
-wheel_friction_slip = 5.0
-suspension_travel = 0.1
+wheel_roll_influence = 0.8
+wheel_friction_slip = 2.0
 suspension_stiffness = 50.0
-damping_compression = 0.3
-damping_relaxation = 0.5
 
 [node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D FR" instance=ExtResource("3_t3gmr")]
 
 [node name="VehicleWheel3D BL" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.2)
-wheel_roll_influence = 0.5
-wheel_friction_slip = 5.0
-suspension_travel = 0.1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.12, 1.2)
+wheel_roll_influence = 0.8
+wheel_friction_slip = 1.8
 suspension_stiffness = 50.0
-damping_compression = 0.3
-damping_relaxation = 0.5
 
 [node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D BL" instance=ExtResource("3_t3gmr")]
 
 [node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.12, -1.2)
 use_as_traction = true
 use_as_steering = true
-wheel_roll_influence = 0.5
-wheel_friction_slip = 5.0
-suspension_travel = 0.1
+wheel_roll_influence = 0.8
+wheel_friction_slip = 2.0
 suspension_stiffness = 50.0
-damping_compression = 0.3
-damping_relaxation = 0.5
 
 [node name="SM_Wheel" parent="VehicleBody3D/VehicleWheel3D FL" instance=ExtResource("3_t3gmr")]
+
+[node name="Camera Node" type="Node3D" parent="."]
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera Node" node_paths=PackedStringArray("target_vehicle")]
+script = ExtResource("3_sl0jo")
+target_vehicle = NodePath("../../VehicleBody3D")
