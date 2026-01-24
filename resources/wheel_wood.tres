@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CarWheelResource" load_steps=2 format=3 uid="uid://cgk2134h3uyqa"]
+
+[ext_resource type="Script" uid="uid://2r2fa6vlwgp1" path="res://scripts/car_wheel_resource.gd" id="1_18na8"]
+
+[resource]
+script = ExtResource("1_18na8")
+wheel_friction_slip = 2.0
+suspension_stiffness = 80.0
+metadata/_custom_type_script = "uid://2r2fa6vlwgp1"

@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://isy0ugnwx738"]
+
+[ext_resource type="PackedScene" uid="uid://d2h67xe24s0o7" path="res://scenes/car.tscn" id="1_jceud"]
+[ext_resource type="Script" uid="uid://0dhdt2elu6c1" path="res://scripts/garage_ui.gd" id="2_gnlqp"]
+[ext_resource type="Resource" uid="uid://0qo1u8ouel8a" path="res://resources/chassis_light.tres" id="3_d8qye"]
+[ext_resource type="Resource" uid="uid://bfg23g8eydosl" path="res://resources/chassis_heavy.tres" id="4_18b1i"]
+[ext_resource type="Resource" uid="uid://cgk2134h3uyqa" path="res://resources/wheel_wood.tres" id="5_47l8i"]
+[ext_resource type="Resource" uid="uid://2grudxv4j4h" path="res://resources/wheel_rubber.tres" id="6_v0fcm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnlqp"]
+albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f50xb"]
+
+[node name="Garage" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.86983097, 0.21487626, -0.44409722, 0, 0.9001668, 0.43554536, 0.4933499, -0.37885085, 0.78299296, -2.23266, 1.5062556, 2.862112)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_gnlqp")
+mesh = SubResource("CylinderMesh_f50xb")
+
+[node name="VehicleBody3D" parent="." instance=ExtResource("1_jceud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08579922, 0.21564853, -0.03705682)
+gravity_scale = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("car_assembler")]
+layout_direction = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_gnlqp")
+car_assembler = NodePath("../../VehicleBody3D/Assembler")
+chassis_light = ExtResource("3_d8qye")
+chassis_heavy = ExtResource("4_18b1i")
+wheel_wood = ExtResource("5_47l8i")
+wheel_rubber = ExtResource("6_v0fcm")
+race_scene_path = "uid://baawn2w8fbjpc"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 85.0
+offset_right = 398.5
+offset_bottom = 317.50003
+
+[node name="Light Chassis" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+text = "Light Chassis"
+
+[node name="Heavy Chassis" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+text = "Heavy Chassis"
+
+[node name="Wood Wheels" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+text = "Wood Wheels"
+
+[node name="Rubber Wheels" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+text = "Rubber Wheels"
+
+[node name="Start Race" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 915.0
+offset_top = 427.0
+offset_right = 1027.2903
+offset_bottom = 540.27423
+text = "Start Race"
+
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Light Chassis" to="CanvasLayer/UI" method="_on_btn_light_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Heavy Chassis" to="CanvasLayer/UI" method="_on_btn_heavy_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Wood Wheels" to="CanvasLayer/UI" method="_on_btn_wood_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Rubber Wheels" to="CanvasLayer/UI" method="_on_btn_rubber_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Start Race" to="CanvasLayer/UI" method="_on_btn_start_race_pressed"]
+
+[editable path="VehicleBody3D"]

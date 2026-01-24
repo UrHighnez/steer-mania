@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddgje6t11apg3"]
 
-[ext_resource type="PackedScene" uid="uid://bvqv4ofosa0ff" path="res://SM_Wheel.glb" id="1_8m8ww"]
+[ext_resource type="PackedScene" uid="uid://bvqv4ofosa0ff" path="res://models/SM_Wheel.glb" id="1_8m8ww"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0ure"]
 albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)

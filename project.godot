@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="Steer Mania"
-run/main_scene="res://test_track.tscn"
+run/main_scene="uid://isy0ugnwx738"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]
 
-GameManager="*res://game_manager.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [input]
 

@@ -1,19 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://baawn2w8fbjpc"]
+[gd_scene load_steps=13 format=3 uid="uid://baawn2w8fbjpc"]
 
-[ext_resource type="Script" uid="uid://c13owiby5n1lo" path="res://car_controller.gd" id="2_dd2be"]
-[ext_resource type="Script" uid="uid://bt43365dp4iqv" path="res://follow_camera.gd" id="3_sl0jo"]
-[ext_resource type="PackedScene" uid="uid://ddgje6t11apg3" path="res://wheel.tscn" id="3_t3gmr"]
+[ext_resource type="PackedScene" uid="uid://d2h67xe24s0o7" path="res://scenes/car.tscn" id="1_c6jrw"]
+[ext_resource type="Script" uid="uid://bt43365dp4iqv" path="res://scripts/follow_camera.gd" id="3_sl0jo"]
 
 [sub_resource type="Environment" id="Environment_sskuf"]
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_tpaj3"]
 
 [sub_resource type="Compositor" id="Compositor_sskuf"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sskuf"]
-size = Vector3(1.5, 0.75, 3)
-
-[sub_resource type="BoxMesh" id="BoxMesh_t3gmr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sskuf"]
 albedo_color = Color(0.11119685, 0.11119685, 0.11119679, 1)
@@ -46,54 +40,7 @@ compositor = SubResource("Compositor_sskuf")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, 0)
 
-[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
-mass = 80.0
-center_of_mass_mode = 1
-script = ExtResource("2_dd2be")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-shape = SubResource("BoxShape3D_sskuf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
-mesh = SubResource("BoxMesh_t3gmr")
-
-[node name="VehicleWheel3D BR" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.12, 1.2)
-wheel_roll_influence = 0.8
-wheel_friction_slip = 1.8
-suspension_stiffness = 50.0
-
-[node name="Wheel Mesh" parent="VehicleBody3D/VehicleWheel3D BR" instance=ExtResource("3_t3gmr")]
-
-[node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.12, -1.2)
-use_as_traction = true
-use_as_steering = true
-wheel_roll_influence = 0.8
-wheel_friction_slip = 2.0
-suspension_stiffness = 50.0
-
-[node name="Wheel Mesh" parent="VehicleBody3D/VehicleWheel3D FR" instance=ExtResource("3_t3gmr")]
-
-[node name="VehicleWheel3D BL" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.12, 1.2)
-wheel_roll_influence = 0.8
-wheel_friction_slip = 1.8
-suspension_stiffness = 50.0
-
-[node name="Wheel Mesh" parent="VehicleBody3D/VehicleWheel3D BL" instance=ExtResource("3_t3gmr")]
-
-[node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.12, -1.2)
-use_as_traction = true
-use_as_steering = true
-wheel_roll_influence = 0.8
-wheel_friction_slip = 2.0
-suspension_stiffness = 50.0
-
-[node name="Wheel Mesh" parent="VehicleBody3D/VehicleWheel3D FL" instance=ExtResource("3_t3gmr")]
+[node name="VehicleBody3D" parent="." instance=ExtResource("1_c6jrw")]
 
 [node name="Camera Node" type="Node3D" parent="."]
 physics_interpolation_mode = 2
@@ -102,6 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.965925
 [node name="Camera3D" type="Camera3D" parent="Camera Node" node_paths=PackedStringArray("target_vehicle")]
 script = ExtResource("3_sl0jo")
 target_vehicle = NodePath("../../VehicleBody3D")
+follow_height = 3.5
 
 [node name="Track" type="Node3D" parent="."]
 

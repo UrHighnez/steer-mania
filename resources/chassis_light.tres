@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CarChassisResource" load_steps=2 format=3 uid="uid://0qo1u8ouel8a"]
+
+[ext_resource type="Script" uid="uid://b6un8nviu3hcl" path="res://scripts/car_chassis_resource.gd" id="1_dteng"]
+
+[resource]
+script = ExtResource("1_dteng")
+metadata/_custom_type_script = "uid://b6un8nviu3hcl"
