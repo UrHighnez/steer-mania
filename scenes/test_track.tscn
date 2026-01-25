@@ -44,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1
 
 [node name="Camera Node" type="Node3D" parent="."]
 physics_interpolation_mode = 2
-transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659257, 0.25881898, 0, -0.25881898, 0.9659257, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Camera Node" node_paths=PackedStringArray("target_vehicle")]
 script = ExtResource("3_sl0jo")
@@ -154,5 +154,31 @@ transform = Transform3D(0.9998876, 0.074047364, 0.010579935, 0.01058054, 0.00078
 mesh = SubResource("TextMesh_t3gmr")
 
 [node name="ArrowMesh 3" type="MeshInstance3D" parent="Track/Track Mesh4"]
+transform = Transform3D(0.9998874, 0.07404734, 0.010579933, 0.010581017, 0.00078319013, -0.99994355, -0.010578792, 6.999608, -4.712787e-08, 0.48353302, -0.013087988, 0.2707596)
+mesh = SubResource("TextMesh_t3gmr")
+
+[node name="Track Mesh5" type="MeshInstance3D" parent="Track"]
+transform = Transform3D(-19.00685, -0.20952138, 3.1720376, -6.275811, 1.445872, -0.44303495, -14.978452, -0.33993357, -3.8395178, -46.30892, -45.837936, -171.57404)
+material_override = SubResource("StandardMaterial3D_sskuf")
+mesh = SubResource("PlaneMesh_tpaj3")
+skin = SubResource("Skin_sskuf")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Track/Track Mesh5"]
+physics_interpolation_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_dd2be")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Track/Track Mesh5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_dd2be")
+
+[node name="ArrowMesh 1" type="MeshInstance3D" parent="Track/Track Mesh5"]
+transform = Transform3D(0.9998874, 0.074047334, 0.010579933, 0.010581017, 0.00078319013, -0.99994355, -0.010578792, 6.999608, -4.712787e-08, -0.4751284, -0.013030052, 0.2707596)
+mesh = SubResource("TextMesh_t3gmr")
+
+[node name="ArrowMesh 2" type="MeshInstance3D" parent="Track/Track Mesh5"]
+transform = Transform3D(0.9998876, 0.074047364, 0.010579935, 0.01058054, 0.00078319013, -0.99994355, -0.010578792, 6.999608, -4.712787e-08, 0.00022923946, -0.021657228, 0.2707596)
+mesh = SubResource("TextMesh_t3gmr")
+
+[node name="ArrowMesh 3" type="MeshInstance3D" parent="Track/Track Mesh5"]
 transform = Transform3D(0.9998874, 0.07404734, 0.010579933, 0.010581017, 0.00078319013, -0.99994355, -0.010578792, 6.999608, -4.712787e-08, 0.48353302, -0.013087988, 0.2707596)
 mesh = SubResource("TextMesh_t3gmr")

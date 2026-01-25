@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://2grudxv4j4h" path="res://resources/wheel_rubber.tres" id="6_v0fcm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnlqp"]
-albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+albedo_color = Color(0.2801495, 0.26968017, 0.23827218, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_f50xb"]
 
@@ -18,10 +18,11 @@ albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
 transform = Transform3D(0.86983097, 0.21487626, -0.44409722, 0, 0.9001668, 0.43554536, 0.4933499, -0.37885085, 0.78299296, -2.23266, 1.5062556, 2.862112)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 0)
+transform = Transform3D(0.8111836, 0.25021964, -0.5285559, 0.19160725, 0.74022037, 0.6444848, 0.5525107, -0.62407064, 0.5525107, -3.1332262, 5, 2.9001813)
+light_energy = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, -0.5, 0)
+transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, -0.7, 0)
 material_override = SubResource("StandardMaterial3D_gnlqp")
 mesh = SubResource("CylinderMesh_f50xb")
 

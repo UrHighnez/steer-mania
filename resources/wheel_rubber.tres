@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="CarWheelResource" load_steps=2 format=3 uid="uid://2grudxv4j4h"]
+[gd_resource type="Resource" script_class="CarWheelResource" load_steps=3 format=3 uid="uid://2grudxv4j4h"]
 
 [ext_resource type="Script" uid="uid://2r2fa6vlwgp1" path="res://scripts/car_wheel_resource.gd" id="1_hyouw"]
+[ext_resource type="PackedScene" uid="uid://ddgje6t11apg3" path="res://scenes/wheel_rubber_visuals.tscn" id="2_yp6rj"]
 
 [resource]
 script = ExtResource("1_hyouw")
+name = "Rubber Wheel"
+wheel_scene = ExtResource("2_yp6rj")
 wheel_friction_slip = 8.0
 suspension_stiffness = 40.0
 metadata/_custom_type_script = "uid://2r2fa6vlwgp1"

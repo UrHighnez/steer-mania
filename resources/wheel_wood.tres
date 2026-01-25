@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="CarWheelResource" load_steps=2 format=3 uid="uid://cgk2134h3uyqa"]
+[gd_resource type="Resource" script_class="CarWheelResource" load_steps=3 format=3 uid="uid://cgk2134h3uyqa"]
 
 [ext_resource type="Script" uid="uid://2r2fa6vlwgp1" path="res://scripts/car_wheel_resource.gd" id="1_18na8"]
+[ext_resource type="PackedScene" uid="uid://437ld5xtvdju" path="res://scenes/wheel_wood_visuals.tscn" id="2_pytyu"]
 
 [resource]
 script = ExtResource("1_18na8")
+name = "Wood Wheel"
+wheel_scene = ExtResource("2_pytyu")
 wheel_friction_slip = 2.0
 suspension_stiffness = 80.0
 metadata/_custom_type_script = "uid://2r2fa6vlwgp1"

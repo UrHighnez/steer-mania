@@ -42,9 +42,6 @@ func _on_btn_rubber_pressed():
 	car_assembler._apply_wheels(wheel_rubber)
 
 func _on_btn_start_race_pressed():
-	print("Knopf wurde gedrückt!") # Debug 1
-	print("Pfad ist: ", race_scene_path) # Debug 2
-	
 	if race_scene_path:
 		var fehler = get_tree().change_scene_to_file(race_scene_path)
 		if fehler != OK:

@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="CarChassisResource" load_steps=2 format=3 uid="uid://0qo1u8ouel8a"]
+[gd_resource type="Resource" script_class="CarChassisResource" load_steps=3 format=3 uid="uid://0qo1u8ouel8a"]
 
 [ext_resource type="Script" uid="uid://b6un8nviu3hcl" path="res://scripts/car_chassis_resource.gd" id="1_dteng"]
+[ext_resource type="PackedScene" uid="uid://vnc31m8tbjx0" path="res://scenes/chassis_light_visuals.tscn" id="1_y7f2r"]
 
 [resource]
 script = ExtResource("1_dteng")
+chassis_scene = ExtResource("1_y7f2r")
 metadata/_custom_type_script = "uid://b6un8nviu3hcl"

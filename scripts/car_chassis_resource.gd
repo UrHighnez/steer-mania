@@ -2,8 +2,8 @@ extends Resource
 class_name CarChassisResource
 
 @export_group("Optik")
-@export var name: String = "Holzkiste"
-@export var mesh: ArrayMesh # Das 3D-Modell der Karosserie
+@export var name: String = "Standard Chassis"
+@export var chassis_scene: PackedScene # Hier ziehen wir später eine .tscn rein
 
 @export_group("Physik")
 @export var mass: float = 40.0 # Gewicht ist entscheidend für Speed bergab!
