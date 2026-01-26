@@ -1,10 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://basjryw3fg2gr"]
+[gd_scene load_steps=6 format=3 uid="uid://basjryw3fg2gr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kvl0"]
 size = Vector3(1.4, 0.7, 2.8)
 
+[sub_resource type="Gradient" id="Gradient_2kvl0"]
+offsets = PackedFloat32Array(0.32307693, 0.9461538)
+colors = PackedColorArray(0.5489626, 0.5489626, 0.54896253, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4snwa"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_20m48"]
+width = 32
+height = 32
+noise = SubResource("FastNoiseLite_4snwa")
+color_ramp = SubResource("Gradient_2kvl0")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyfmr"]
-albedo_color = Color(0.16957346, 0.2699126, 0.35068473, 1)
+albedo_color = Color(0.24499999, 0.30275002, 0.35, 1)
+albedo_texture = SubResource("NoiseTexture2D_20m48")
 
 [node name="ChassisLight" type="Node3D"]
 

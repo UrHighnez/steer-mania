@@ -1,39 +1,43 @@
 extends Node3D
 
 @onready var win_label = $HUD/Label # Pfad zu deinem Label anpassen!
-@onready var finish_line = $"Track/Finish Area" # Pfad zu deiner Area3D anpassen!
+@onready var finish_line = $"Track/Finish Line" # Pfad zu deiner Area3D anpassen!
+@onready var course_boundary = $"Track/Course Boundary" # Dein Bereich um die Strecke
 
-# Hier den Pfad zu deiner Garage-Szene eintragen (Rechtsklick auf Datei -> Copy Path)
 @export_file("*.tscn") var garage_scene_path: String
 
 func _ready():
-	# Wir verbinden das Signal der Ziellinie via Code (sauberer als im Editor)
-	# "body_entered" ist das Signal, das feuert, wenn was in die Area fliegt
-	finish_line.body_entered.connect(_on_finish_line_entered)
+	# Ziellinie: Wenn man REINFÄHRT, hat man gewonnen
+	if finish_line:
+		finish_line.body_entered.connect(_on_finish_line_entered)
+	
+	# Begrenzung: Wenn man RAUSFÄHRT, wird zurückgesetzt
+	if course_boundary:
+		course_boundary.body_exited.connect(_on_course_boundary_exited)
 
-func _process(delta):
-	# ESC Taste Logik (Standardmäßig ist ui_cancel auf ESC gemappt)
-	if Input.is_action_just_pressed("Exit"):
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_cancel"):
 		go_to_garage()
 
 func _on_finish_line_entered(body):
-	# Wir prüfen, ob das Objekt, das durchgefahren ist, in der Gruppe "player" ist
 	if body.is_in_group("player"):
 		game_won()
 
+# Diese Funktion wird aufgerufen, sobald das Auto die Box verlässt
+func _on_course_boundary_exited(body):
+	if body.is_in_group("player"):
+		print("Strecke verlassen! Neustart...")
+		reset_level()
+
 func game_won():
-	print("Ziel erreicht!")
-	win_label.show() # Text anzeigen
-	
-	# Optional: Spiel pausieren, damit man nicht weiterfährt
-	# get_tree().paused = true 
+	if win_label:
+		win_label.show()
+	await get_tree().create_timer(3.0).timeout
+	go_to_garage()
+
+func reset_level():
+	get_tree().reload_current_scene()
 
 func go_to_garage():
-	# Optional: Pause aufheben, falls gesetzt, sonst bleibt das Menü auch pausiert
-	# get_tree().paused = false
-	
-	if garage_scene_path == "":
-		printerr("FEHLER: Kein Pfad zur Garage im Inspektor zugewiesen!")
-		return
-		
-	get_tree().change_scene_to_file(garage_scene_path)
+	if garage_scene_path != "":
+		get_tree().change_scene_to_file(garage_scene_path)

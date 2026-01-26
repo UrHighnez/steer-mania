@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://baawn2w8fbjpc"]
+[gd_scene load_steps=32 format=3 uid="uid://baawn2w8fbjpc"]
 
 [ext_resource type="Script" uid="uid://ddfljqie4olrc" path="res://scripts/main.gd" id="1_bm22b"]
 [ext_resource type="PackedScene" uid="uid://d2h67xe24s0o7" path="res://scenes/car.tscn" id="1_c6jrw"]
@@ -45,9 +45,14 @@ height = 7.0
 height = 1.0
 radius = 8.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_bm22b"]
+size = Vector3(199.64026, 230.93655, 584.2526)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d1w0v"]
-ground_bottom_color = Color(0.41431075, 0.48150492, 0.52619237, 1)
-ground_horizon_color = Color(0.20849943, 0.3025279, 0.39072904, 1)
+sky_top_color = Color(0.11579851, 0.35755262, 0.7178707, 1)
+sky_horizon_color = Color(0.493056, 0.67185813, 0.86150223, 1)
+ground_bottom_color = Color(0.4763763, 0.6317062, 0.74478906, 1)
+ground_horizon_color = Color(0.7367697, 0.87510014, 0.963527, 1)
 
 [sub_resource type="Sky" id="Sky_d1w0v"]
 sky_material = SubResource("ProceduralSkyMaterial_d1w0v")
@@ -415,12 +420,18 @@ shape = SubResource("CylinderShape3D_of88p")
 transform = Transform3D(-3.090862e-08, -0.70710677, 0.70710677, 1, -4.371139e-08, 0, 3.090862e-08, 0.70710677, 0.70710677, -7.5, 0, -7.5)
 shape = SubResource("CylinderShape3D_of88p")
 
-[node name="Finish Area" type="Area3D" parent="Track"]
+[node name="Finish Line" type="Area3D" parent="Track"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.901184, -169.27255, -524.57434)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Track/Finish Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Track/Finish Line"]
 transform = Transform3D(0.82384926, -0.5668089, 2.4776003e-08, 0, -4.371138e-08, -1, 0.5668089, 0.82384926, -3.6011595e-08, 3.0254936, 0, -3.1276245)
 shape = SubResource("CylinderShape3D_bm22b")
+
+[node name="Course Boundary" type="Area3D" parent="Track"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Track/Course Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.481873, -105.74745, -283.65768)
+shape = SubResource("BoxShape3D_bm22b")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -566,7 +577,7 @@ transform = Transform3D(8.085713, 0, -18.07311, 0, 19.799397, 0, 18.07311, 0, 8.
 mesh = ExtResource("14_of88p")
 
 [node name="GenObject_28" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
-transform = Transform3D(2.727417, 0, -19.021978, 0, 19.216515, 0, 19.021978, 0, 2.727417, -21.38797, -178.67027, -482.76385)
+transform = Transform3D(2.727417, 0, -19.021978, 0, 19.216515, 0, 19.021978, 0, 2.727417, -25.839874, -178.67027, -480.18814)
 mesh = ExtResource("15_bm22b")
 
 [node name="GenObject_29" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
@@ -627,10 +638,6 @@ mesh = ExtResource("14_of88p")
 
 [node name="GenObject_43" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
 transform = Transform3D(-13.434963, 0, -11.871547, 0, 17.92852, 0, 11.871547, 0, -13.434963, 188.7, -84.03125, -320.7562)
-mesh = ExtResource("14_of88p")
-
-[node name="GenObject_44" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
-transform = Transform3D(-5.7306776, 0, 17.979567, 0, 18.870758, 0, -17.979567, 0, -5.7306776, 184.1063, -239.06134, -45.864716)
 mesh = ExtResource("14_of88p")
 
 [node name="GenObject_45" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
@@ -718,7 +725,7 @@ transform = Transform3D(12.8007965, 0, -19.468843, 0, 23.300135, 0, 19.468843, 0
 mesh = ExtResource("14_of88p")
 
 [node name="GenObject_66" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
-transform = Transform3D(-11.388583, 0, 19.178108, 0, 22.3047, 0, -19.178108, 0, -11.388583, 48.94551, -46.841766, -225.1731)
+transform = Transform3D(-11.388583, 0, 19.178108, 0, 22.3047, 0, -19.178108, 0, -11.388583, 54.219757, -46.841766, -225.63379)
 mesh = ExtResource("14_of88p")
 
 [node name="GenObject_67" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
@@ -823,10 +830,6 @@ mesh = ExtResource("14_of88p")
 
 [node name="GenObject_92" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
 transform = Transform3D(17.021273, 0, 3.272443, 0, 17.332993, 0, -3.272443, 0, 17.021273, -172.94017, -88.41693, -220.9165)
-mesh = ExtResource("14_of88p")
-
-[node name="GenObject_93" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
-transform = Transform3D(-9.572984, 0, 14.238709, 0, 17.157589, 0, -14.238709, 0, -9.572984, 171.02443, -293.656, 61.867188)
 mesh = ExtResource("14_of88p")
 
 [node name="GenObject_94" type="MeshInstance3D" parent="Environment/Foliage/Rock Scatterer"]
@@ -971,7 +974,7 @@ transform = Transform3D(-5.5182347, 0, 11.770212, 0, 12.99957, 0, -11.770212, 0,
 mesh = ExtResource("8_6kgm5")
 
 [node name="GenObject_27" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(13.85711, 0, -9.048046, 0, 16.54952, 0, 9.048046, 0, 13.85711, -43.86252, -59.515095, -206.09407)
+transform = Transform3D(13.85711, 0, -9.048046, 0, 16.54952, 0, 9.048046, 0, 13.85711, -46.931526, -51.072086, -205.47153)
 mesh = ExtResource("6_k43wr")
 
 [node name="GenObject_28" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
@@ -1086,10 +1089,6 @@ mesh = ExtResource("5_y5a1h")
 transform = Transform3D(7.306912, 0, -14.889371, 0, 16.585667, 0, 14.889371, 0, 7.306912, 64.506775, -41.380463, -202.73361)
 mesh = ExtResource("5_y5a1h")
 
-[node name="GenObject_56" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(1.7703375, 0, 15.698556, 0, 15.798061, 0, -15.698556, 0, 1.7703375, 151.94862, -275.03308, 56.56018)
-mesh = ExtResource("7_at531")
-
 [node name="GenObject_57" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(-0.16780573, 0, -17.853085, 0, 17.853872, 0, 17.853085, 0, -0.16780573, 24.564312, -174.79372, -454.05283)
 mesh = ExtResource("6_k43wr")
@@ -1138,10 +1137,6 @@ mesh = ExtResource("5_y5a1h")
 transform = Transform3D(-13.37625, 0, -5.20045, 0, 14.351612, 0, 5.20045, 0, -13.37625, 42.498318, -207.2054, -528.1908)
 mesh = ExtResource("7_at531")
 
-[node name="GenObject_71" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(-8.162236, 0, 13.324117, 0, 15.625434, 0, -13.324117, 0, -8.162236, 150.29066, -278.9272, 93.79797)
-mesh = ExtResource("6_k43wr")
-
 [node name="GenObject_72" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(11.314715, 0, 12.9604845, 0, 17.204561, 0, -12.9604845, 0, 11.314715, 176.1315, -165.30165, -497.6871)
 mesh = ExtResource("5_y5a1h")
@@ -1152,10 +1147,6 @@ mesh = ExtResource("5_y5a1h")
 
 [node name="GenObject_74" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(-16.070286, 0, -1.5007592, 0, 16.14021, 0, 1.5007592, 0, -16.070286, 139.75717, -109.460754, -394.84058)
-mesh = ExtResource("5_y5a1h")
-
-[node name="GenObject_75" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(15.409631, 0, -5.424579, 0, 16.336548, 0, 5.424579, 0, 15.409631, 154.20433, -276.03928, 55.764557)
 mesh = ExtResource("5_y5a1h")
 
 [node name="GenObject_76" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
@@ -1189,10 +1180,6 @@ mesh = ExtResource("5_y5a1h")
 [node name="GenObject_83" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(1.2190361, 0, 13.571729, 0, 13.626367, 0, -13.571729, 0, 1.2190361, 127.020294, -156.76573, -478.64014)
 mesh = ExtResource("8_6kgm5")
-
-[node name="GenObject_84" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(-5.5082116, 0, 11.918867, 0, 13.130111, 0, -11.918867, 0, -5.5082116, 141.37529, -270.5304, 79.810135)
-mesh = ExtResource("5_y5a1h")
 
 [node name="GenObject_85" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(-9.2401085, 0, -8.038934, 0, 12.247614, 0, 8.038934, 0, -9.2401085, 74.40709, -180.1297, -495.73502)
@@ -1330,10 +1317,6 @@ mesh = ExtResource("5_y5a1h")
 transform = Transform3D(-13.302824, 0, 6.7757726, 0, 14.92904, 0, -6.7757726, 0, -13.302824, 92.98647, -23.778198, -223.74724)
 mesh = ExtResource("5_y5a1h")
 
-[node name="GenObject_119" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(-8.560136, 0, 12.741844, 0, 15.350262, 0, -12.741844, 0, -8.560136, 172.0814, -286.23053, 39.843903)
-mesh = ExtResource("6_k43wr")
-
 [node name="GenObject_120" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(-16.472883, 0, -1.2193955, 0, 16.517954, 0, 1.2193955, 0, -16.472883, -175.77428, -113.601746, -265.86148)
 mesh = ExtResource("5_y5a1h")
@@ -1366,10 +1349,6 @@ mesh = ExtResource("5_y5a1h")
 transform = Transform3D(-14.10573, 0, -10.595257, 0, 17.641743, 0, 10.595257, 0, -14.10573, 34.36261, -201.48235, -508.54196)
 mesh = ExtResource("5_y5a1h")
 
-[node name="GenObject_128" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(-5.3345137, 0, -12.594969, 0, 13.678095, 0, 12.594969, 0, -5.3345137, 182.38507, -238.78905, -40.404083)
-mesh = ExtResource("5_y5a1h")
-
 [node name="GenObject_129" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(6.0414634, 0, -15.109671, 0, 16.27272, 0, 15.109671, 0, 6.0414634, 85.409294, -37.78963, -191.63525)
 mesh = ExtResource("6_k43wr")
@@ -1379,7 +1358,7 @@ transform = Transform3D(10.735725, 0, -7.059707, 0, 12.84894, 0, 7.059707, 0, 10
 mesh = ExtResource("5_y5a1h")
 
 [node name="GenObject_131" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(2.857903, 0, 17.265112, 0, 17.50005, 0, -17.265112, 0, 2.857903, -11.434654, -93.639824, -246.05742)
+transform = Transform3D(2.857903, 0, 17.265112, 0, 17.50005, 0, -17.265112, 0, 2.857903, -23.847027, -84.414566, -252.53035)
 mesh = ExtResource("6_k43wr")
 
 [node name="GenObject_132" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
@@ -1647,7 +1626,7 @@ transform = Transform3D(-11.366009, 0, -13.673418, 0, 17.780565, 0, 13.673418, 0
 mesh = ExtResource("5_y5a1h")
 
 [node name="GenObject_198" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(2.3016431, 0, 15.97715, 0, 16.142084, 0, -15.97715, 0, 2.3016431, -20.39167, -170.64195, -492.40353)
+transform = Transform3D(2.3016431, 0, 15.97715, 0, 16.142084, 0, -15.97715, 0, 2.3016431, -20.39167, -172.5049, -492.40353)
 mesh = ExtResource("6_k43wr")
 
 [node name="GenObject_199" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
@@ -1673,10 +1652,6 @@ mesh = ExtResource("5_y5a1h")
 [node name="GenObject_204" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(16.67989, 0, 4.106913, 0, 17.178051, 0, -4.106913, 0, 16.67989, 60.493195, -138.74265, -423.19858)
 mesh = ExtResource("5_y5a1h")
-
-[node name="GenObject_205" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(3.3179514, 0, -12.981938, 0, 13.399236, 0, 12.981938, 0, 3.3179514, 179.37935, -299.31665, 91.92355)
-mesh = ExtResource("8_6kgm5")
 
 [node name="GenObject_206" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(-10.436372, 0, -7.608725, 0, 12.915516, 0, 7.608725, 0, -10.436372, 180.07974, -107.53937, -382.40726)
@@ -1938,16 +1913,8 @@ mesh = ExtResource("6_k43wr")
 transform = Transform3D(4.232821, 0, -15.298159, 0, 15.872947, 0, 15.298159, 0, 4.232821, 54.266483, -109.32211, -379.25824)
 mesh = ExtResource("5_y5a1h")
 
-[node name="GenObject_272" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(14.887843, 0, -9.915303, 0, 17.887457, 0, 9.915303, 0, 14.887843, 183.9103, -301.5841, 98.49565)
-mesh = ExtResource("5_y5a1h")
-
 [node name="GenObject_273" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
 transform = Transform3D(14.7590065, 0, 7.2525616, 0, 16.444693, 0, -7.2525616, 0, 14.7590065, -182.84381, -34.69405, -109.95421)
-mesh = ExtResource("6_k43wr")
-
-[node name="GenObject_274" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(16.579443, 0, -6.852059, 0, 17.939583, 0, 6.852059, 0, 16.579443, 133.37563, -267.14178, 96.63289)
 mesh = ExtResource("6_k43wr")
 
 [node name="GenObject_275" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
@@ -2039,7 +2006,7 @@ transform = Transform3D(-1.7667103, 0, -13.905586, 0, 14.017367, 0, 13.905586, 0
 mesh = ExtResource("6_k43wr")
 
 [node name="GenObject_297" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(-2.3559475, 0, -15.561609, 0, 15.738938, 0, 15.561609, 0, -2.3559475, -41.48261, -153.01619, -505.0992)
+transform = Transform3D(-2.3559475, 0, -15.561609, 0, 15.738938, 0, 15.561609, 0, -2.3559475, -41.48261, -149.66151, -505.0992)
 mesh = ExtResource("6_k43wr")
 
 [node name="GenObject_298" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
@@ -2047,7 +2014,7 @@ transform = Transform3D(-13.976159, 0, -6.2081695, 0, 15.292953, 0, 6.2081695, 0
 mesh = ExtResource("7_at531")
 
 [node name="GenObject_299" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
-transform = Transform3D(14.837843, 0, -3.9309409, 0, 15.349719, 0, 3.9309409, 0, 14.837843, -42.43376, -58.98004, -203.41193)
+transform = Transform3D(14.837843, 0, -3.9309409, 0, 15.349719, 0, 3.9309409, 0, 14.837843, -42.43376, -52.406574, -203.41193)
 mesh = ExtResource("5_y5a1h")
 
 [node name="GenObject_300" type="MeshInstance3D" parent="Environment/Foliage/Tree Scatterer"]
@@ -2125,10 +2092,6 @@ mesh = ExtResource("8_at531")
 transform = Transform3D(-9.463427, 0, -0.33512107, 0, 9.469358, 0, 0.33512107, 0, -9.463427, 158.81166, -110.90582, -400.1184)
 mesh = ExtResource("8_at531")
 
-[node name="GenObject_16" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-5.6050763, 0, 9.521697, 0, 11.048964, 0, -9.521697, 0, -5.6050763, 179.36708, -282.8874, 19.092018)
-mesh = ExtResource("8_k43wr")
-
 [node name="GenObject_17" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(-9.579931, 0, 0.92215747, 0, 9.624212, 0, -0.92215747, 0, -9.579931, -176.81557, -87.17792, -408.94925)
 mesh = ExtResource("8_at531")
@@ -2171,10 +2134,6 @@ mesh = ExtResource("8_at531")
 
 [node name="GenObject_27" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(-5.1039133, 0, -6.1870527, 0, 8.020571, 0, 6.1870527, 0, -5.1039133, -48.303467, -128.18118, -312.4085)
-mesh = ExtResource("8_at531")
-
-[node name="GenObject_28" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-4.657124, 0, 6.8403563, 0, 8.275221, 0, -6.8403563, 0, -4.657124, 195.6692, -292.19095, 42.866272)
 mesh = ExtResource("8_at531")
 
 [node name="GenObject_29" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
@@ -2250,7 +2209,7 @@ transform = Transform3D(5.286149, 0, 7.6525893, 0, 9.300833, 0, -7.6525893, 0, 5
 mesh = ExtResource("8_at531")
 
 [node name="GenObject_47" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(9.598442, 0, -0.49783337, 0, 9.611344, 0, 0.49783337, 0, 9.598442, -12.988663, -13.092285, -40.47888)
+transform = Transform3D(9.598442, 0, -0.49783337, 0, 9.611344, 0, 0.49783337, 0, 9.598442, -14.98888, -13.092285, -42.0756)
 mesh = ExtResource("8_k43wr")
 
 [node name="GenObject_48" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
@@ -2493,10 +2452,6 @@ mesh = ExtResource("8_at531")
 transform = Transform3D(-5.934393, 0, -8.097605, 0, 10.039333, 0, 8.097605, 0, -5.934393, 39.329044, -190.25432, -491.5423)
 mesh = ExtResource("8_at531")
 
-[node name="GenObject_108" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(4.502311, 0, 8.021333, 0, 9.198509, 0, -8.021333, 0, 4.502311, 183.57008, -289.85843, 42.529907)
-mesh = ExtResource("8_at531")
-
 [node name="GenObject_109" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(10.671473, 0, 4.0052876, 0, 11.398362, 0, -4.0052876, 0, 10.671473, -23.986206, -159.35625, -404.21692)
 mesh = ExtResource("8_k43wr")
@@ -2523,10 +2478,6 @@ mesh = ExtResource("8_at531")
 
 [node name="GenObject_115" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(-3.6183386, 0, -9.015486, 0, 9.714493, 0, 9.015486, 0, -3.6183386, 143.2829, -44.401825, -289.18024)
-mesh = ExtResource("8_at531")
-
-[node name="GenObject_116" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(6.668792, 0, -9.935757, 0, 11.966288, 0, 9.935757, 0, 6.668792, 194.04942, -199.58066, -106.6622)
 mesh = ExtResource("8_at531")
 
 [node name="GenObject_117" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
@@ -2559,10 +2510,6 @@ mesh = ExtResource("8_at531")
 
 [node name="GenObject_124" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(-8.717144, 0, -4.686065, 0, 9.896858, 0, 4.686065, 0, -8.717144, -163.38055, -132.42734, -531.0146)
-mesh = ExtResource("8_at531")
-
-[node name="GenObject_125" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-10.6498575, 0, -0.013936328, 0, 10.649866, 0, 0.013936328, 0, -10.6498575, 176.9189, -289.042, 44.4888)
 mesh = ExtResource("8_at531")
 
 [node name="GenObject_126" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
@@ -2717,16 +2664,8 @@ mesh = ExtResource("8_k43wr")
 transform = Transform3D(2.2158859, 0, -8.537602, 0, 8.820477, 0, 8.537602, 0, 2.2158859, -94.59778, -12.858124, 20.323318)
 mesh = ExtResource("8_at531")
 
-[node name="GenObject_164" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(3.518366, 0, 8.500678, 0, 9.200024, 0, -8.500678, 0, 3.518366, 198.51515, -296.603, 60.725876)
-mesh = ExtResource("8_k43wr")
-
-[node name="GenObject_165" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-11.399354, 0, 1.5247527, 0, 11.500876, 0, -1.5247527, 0, -11.399354, 178.01457, -297.69196, 89.31537)
-mesh = ExtResource("8_k43wr")
-
 [node name="GenObject_166" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(7.86489, 0, -7.7604685, 0, 11.049044, 0, 7.7604685, 0, 7.86489, -9.404129, -15.411163, -42.46216)
+transform = Transform3D(7.86489, 0, -7.7604685, 0, 11.049044, 0, 7.7604685, 0, 7.86489, -10.726167, -15.411163, -44.236656)
 mesh = ExtResource("8_at531")
 
 [node name="GenObject_167" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
@@ -3105,10 +3044,6 @@ mesh = ExtResource("8_at531")
 transform = Transform3D(6.2810893, 0, 8.196991, 0, 10.3267975, 0, -8.196991, 0, 6.2810893, -23.8721, -111.88205, -286.64636)
 mesh = ExtResource("8_k43wr")
 
-[node name="GenObject_261" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(3.5158877, 0, 8.036288, 0, 8.771739, 0, -8.036288, 0, 3.5158877, 188.17578, -204.76778, -93.842255)
-mesh = ExtResource("8_at531")
-
 [node name="GenObject_262" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(-9.09018, 0, 1.3112168, 0, 9.184262, 0, -1.3112168, 0, -9.09018, -152.9901, -90.809845, -368.05453)
 mesh = ExtResource("8_at531")
@@ -3236,14 +3171,6 @@ mesh = ExtResource("8_at531")
 [node name="GenObject_293" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(-8.222641, 0, -2.9696178, 0, 8.742452, 0, 2.9696178, 0, -8.222641, 176.44272, -115.70657, -405.27344)
 mesh = ExtResource("8_k43wr")
-
-[node name="GenObject_294" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-8.209351, 0, -2.652375, 0, 8.627197, 0, 2.652375, 0, -8.209351, 184.17693, -280.2405, 6.239868)
-mesh = ExtResource("8_at531")
-
-[node name="GenObject_295" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(4.074324, 0, 9.33219, 0, 10.182822, 0, -9.33219, 0, 4.074324, 196.42317, -296.14548, 60.418457)
-mesh = ExtResource("8_at531")
 
 [node name="GenObject_296" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(9.44833, 0, 1.1198761, 0, 9.514466, 0, -1.1198761, 0, 9.44833, -71.288704, -113.25595, -590.672)
@@ -3673,10 +3600,6 @@ mesh = ExtResource("8_at531")
 transform = Transform3D(7.011602, 0, -8.528341, 0, 11.040614, 0, 8.528341, 0, 7.011602, 101.15566, -41.361633, -183.81183)
 mesh = ExtResource("8_k43wr")
 
-[node name="GenObject_403" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-5.467015, 0, 7.285971, 0, 9.108986, 0, -7.285971, 0, -5.467015, 198.79997, -285.0278, 7.207962)
-mesh = ExtResource("8_k43wr")
-
 [node name="GenObject_404" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(9.662904, 0, -4.3281307, 0, 10.587937, 0, 4.3281307, 0, 9.662904, -44.029327, -161.34038, -381.00937)
 mesh = ExtResource("8_k43wr")
@@ -3701,20 +3624,12 @@ mesh = ExtResource("8_k43wr")
 transform = Transform3D(6.806446, 0, 4.721716, 0, 8.283858, 0, -4.721716, 0, 6.806446, -26.861633, -134.46268, -327.48288)
 mesh = ExtResource("8_at531")
 
-[node name="GenObject_410" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(8.855544, 0, -1.449553, 0, 8.973397, 0, 1.449553, 0, 8.855544, 199.02364, -298.57175, 69.35004)
-mesh = ExtResource("8_k43wr")
-
 [node name="GenObject_411" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(8.184219, 0, -8.5020485, 0, 11.801113, 0, 8.5020485, 0, 8.184219, -93.94623, -15.698639, 25.660446)
 mesh = ExtResource("8_at531")
 
 [node name="GenObject_412" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(9.087119, 0, 7.4980907, 0, 11.781218, 0, -7.4980907, 0, 9.087119, 89.582146, -40.11615, -186.6412)
-mesh = ExtResource("8_at531")
-
-[node name="GenObject_413" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-8.106119, 0, -0.92047065, 0, 8.158213, 0, 0.92047065, 0, -8.106119, 184.34258, -285.48746, 21.749176)
 mesh = ExtResource("8_at531")
 
 [node name="GenObject_414" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
@@ -3853,10 +3768,6 @@ mesh = ExtResource("8_at531")
 transform = Transform3D(-7.926278, 0, -8.988564, 0, 11.984162, 0, 8.988564, 0, -7.926278, 144.59547, -144.4012, -460.6768)
 mesh = ExtResource("8_at531")
 
-[node name="GenObject_448" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(2.8257446, 0, 9.663299, 0, 10.067978, 0, -9.663299, 0, 2.8257446, 196.30873, -210.73926, -85.440994)
-mesh = ExtResource("8_at531")
-
 [node name="GenObject_449" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(11.094095, 0, -1.798335, 0, 11.238903, 0, 1.798335, 0, 11.094095, -149.24408, -118.709015, -551.2388)
 mesh = ExtResource("8_k43wr")
@@ -3904,10 +3815,6 @@ mesh = ExtResource("8_k43wr")
 [node name="GenObject_460" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(-1.040035, 0, -9.742157, 0, 9.797515, 0, 9.742157, 0, -1.040035, 161.96744, -119.905975, -416.71255)
 mesh = ExtResource("8_at531")
-
-[node name="GenObject_461" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-8.742596, 0, 2.6943777, 0, 9.148369, 0, -2.6943777, 0, -8.742596, 177.70183, -290.77713, 52.451965)
-mesh = ExtResource("8_k43wr")
 
 [node name="GenObject_462" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(0.13338543, 0, 11.419735, 0, 11.420514, 0, -11.419735, 0, 0.13338543, 123.94876, -187.73422, -538.5405)
@@ -4029,10 +3936,6 @@ mesh = ExtResource("8_at531")
 transform = Transform3D(-3.4938095, 0, -9.602069, 0, 10.217947, 0, 9.602069, 0, -3.4938095, 42.72342, -72.13681, -160.07591)
 mesh = ExtResource("8_k43wr")
 
-[node name="GenObject_492" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
-transform = Transform3D(-5.395719, 0, 8.848347, 0, 10.363736, 0, -8.848347, 0, -5.395719, 196.76102, -201.31694, -104.36751)
-mesh = ExtResource("8_at531")
-
 [node name="GenObject_493" type="MeshInstance3D" parent="Environment/Foliage/Grass Scatterer"]
 transform = Transform3D(7.733377, 0, 4.1219263, 0, 8.763298, 0, -4.1219263, 0, 7.733377, 16.999191, -180.52676, -464.17566)
 mesh = ExtResource("8_at531")
@@ -4095,10 +3998,6 @@ mesh = ExtResource("12_aniw7")
 [node name="GenObject_5" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(10.351097, 0, 6.038722, 0, 11.983796, 0, -6.038722, 0, 10.351097, 193.66655, -166.09538, -495.1593)
 mesh = ExtResource("11_6kgm5")
-
-[node name="GenObject_6" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-10.595329, 0, 4.437746, 0, 11.487149, 0, -4.437746, 0, -10.595329, 194.44429, -289.25833, 30.421768)
-mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_7" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(8.515232, 0, 7.2475576, 0, 11.181962, 0, -7.2475576, 0, 8.515232, -158.39792, -124.3024, -546.4932)
@@ -4300,10 +4199,6 @@ mesh = ExtResource("11_6kgm5")
 transform = Transform3D(-3.2698052, 0, 8.941454, 0, 9.520569, 0, -8.941454, 0, -3.2698052, -27.695282, -231.95828, -26.041046)
 mesh = ExtResource("10_1rywj")
 
-[node name="GenObject_57" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(10.246266, 0, -4.886219, 0, 11.351701, 0, 4.886219, 0, 10.246266, 192.09367, -291.23657, 41.546997)
-mesh = ExtResource("10_1rywj")
-
 [node name="GenObject_58" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-8.579133, 0, 2.196661, 0, 8.855893, 0, -2.196661, 0, -8.579133, -159.91559, -139.06033, -510.59985)
 mesh = ExtResource("10_1rywj")
@@ -4315,10 +4210,6 @@ mesh = ExtResource("12_aniw7")
 [node name="GenObject_60" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(1.587633, 0, -11.766688, 0, 11.873312, 0, 11.766688, 0, 1.587633, 146.10509, -151.15092, -472.90143)
 mesh = ExtResource("10_1rywj")
-
-[node name="GenObject_61" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-8.026907, 0, -4.9495583, 0, 9.430237, 0, 4.9495583, 0, -8.026907, 180.21596, -299.31433, 94.66467)
-mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_62" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-2.6855009, 0, 8.459214, 0, 8.875258, 0, -8.459214, 0, -2.6855009, -23.864548, -22.132477, -96.498405)
@@ -4371,10 +4262,6 @@ mesh = ExtResource("12_aniw7")
 [node name="GenObject_74" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-0.20622946, 0, 11.906996, 0, 11.908782, 0, -11.906996, 0, -0.20622946, -84.68207, -108.00311, -560.86035)
 mesh = ExtResource("11_6kgm5")
-
-[node name="GenObject_75" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-3.5250509, 0, 10.503789, 0, 11.079512, 0, -10.503789, 0, -3.5250509, 183.37527, -199.78789, -101.694336)
-mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_76" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-7.0462847, 0, 4.2779183, 0, 8.243222, 0, -4.2779183, 0, -7.0462847, 156.01744, -37.375458, -240.35478)
@@ -4536,10 +4423,6 @@ mesh = ExtResource("12_aniw7")
 transform = Transform3D(6.540945, 0, 6.306731, 0, 9.086188, 0, -6.306731, 0, 6.540945, 138.82841, -146.33165, -462.99506)
 mesh = ExtResource("10_1rywj")
 
-[node name="GenObject_116" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(5.958093, 0, -7.996434, 0, 9.972053, 0, 7.996434, 0, 5.958093, 192.20161, -297.9867, 72.52075)
-mesh = ExtResource("11_6kgm5")
-
 [node name="GenObject_117" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(7.6570435, 0, -8.588584, 0, 11.506263, 0, 8.588584, 0, 7.6570435, 172.06453, -57.441406, -284.65674)
 mesh = ExtResource("12_aniw7")
@@ -4587,10 +4470,6 @@ mesh = ExtResource("10_1rywj")
 [node name="GenObject_128" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-9.705353, 0, 5.051088, 0, 10.941086, 0, -5.051088, 0, -9.705353, -123.08463, -112.86334, -410.62653)
 mesh = ExtResource("12_aniw7")
-
-[node name="GenObject_129" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-11.51792, 0, -2.7576346, 0, 11.843438, 0, 2.7576346, 0, -11.51792, 197.13382, -204.0162, -99.15988)
-mesh = ExtResource("10_1rywj")
 
 [node name="GenObject_130" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(9.819241, 0, -2.9291139, 0, 10.246814, 0, 2.9291139, 0, 9.819241, 102.54886, -25.22699, -248.3851)
@@ -4702,10 +4581,6 @@ mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_157" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-4.746108, 0, 7.237449, 0, 8.654838, 0, -7.237449, 0, -4.746108, 9.704605, -184.25156, -472.3674)
-mesh = ExtResource("12_aniw7")
-
-[node name="GenObject_158" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(0.31806442, 0, -10.564799, 0, 10.569586, 0, 10.564799, 0, 0.31806442, 194.94318, -204.91972, -96.4285)
 mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_159" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
@@ -4948,14 +4823,6 @@ mesh = ExtResource("12_aniw7")
 transform = Transform3D(0.20475788, 0, 8.517496, 0, 8.519957, 0, -8.517496, 0, 0.20475788, 176.00089, -196.42805, -573.44476)
 mesh = ExtResource("12_aniw7")
 
-[node name="GenObject_219" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(4.067171, 0, -9.471296, 0, 10.307635, 0, 9.471296, 0, 4.067171, 176.59383, -200.7483, -96.890366)
-mesh = ExtResource("12_aniw7")
-
-[node name="GenObject_220" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-9.433485, 0, -3.399171, 0, 10.027213, 0, 3.399171, 0, -9.433485, 178.5259, -293.9308, 68.20767)
-mesh = ExtResource("10_1rywj")
-
 [node name="GenObject_221" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(5.070544, 0, -9.684205, 0, 10.931342, 0, 9.684205, 0, 5.070544, 181.53049, -114.73309, -398.8664)
 mesh = ExtResource("12_aniw7")
@@ -5054,10 +4921,6 @@ mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_245" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-1.3211198, 0, -11.81589, 0, 11.889518, 0, 11.81589, 0, -1.3211198, -8.052704, -162.6736, -418.98297)
-mesh = ExtResource("10_1rywj")
-
-[node name="GenObject_246" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(0.60974365, 0, 11.251558, 0, 11.268067, 0, -11.251558, 0, 0.60974365, 190.14474, -207.07802, -90.08942)
 mesh = ExtResource("10_1rywj")
 
 [node name="GenObject_247" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
@@ -5212,10 +5075,6 @@ mesh = ExtResource("11_6kgm5")
 transform = Transform3D(-6.971458, 0, 8.090554, 0, 10.679808, 0, -8.090554, 0, -6.971458, 189.50829, -181.654, -525.3244)
 mesh = ExtResource("12_aniw7")
 
-[node name="GenObject_285" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(5.866807, 0, 7.017058, 0, 9.146503, 0, -7.017058, 0, 5.866807, 187.27443, -292.37494, 50.92807)
-mesh = ExtResource("10_1rywj")
-
 [node name="GenObject_286" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-8.69053, 0, -7.1746, 0, 11.269436, 0, 7.1746, 0, -8.69053, 129.80652, -47.668518, -174.27237)
 mesh = ExtResource("10_1rywj")
@@ -5322,10 +5181,6 @@ mesh = ExtResource("10_1rywj")
 
 [node name="GenObject_312" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-4.0053053, 0, 11.260992, 0, 11.952088, 0, -11.260992, 0, -4.0053053, 155.7662, -111.66583, -400.83105)
-mesh = ExtResource("10_1rywj")
-
-[node name="GenObject_313" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-0.06606364, 0, -8.932441, 0, 8.932685, 0, 8.932441, 0, -0.06606364, 186.2064, -282.41757, 10.603523)
 mesh = ExtResource("10_1rywj")
 
 [node name="GenObject_314" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
@@ -5512,10 +5367,6 @@ mesh = ExtResource("10_1rywj")
 transform = Transform3D(7.509824, 0, 7.9853516, 0, 10.961902, 0, -7.9853516, 0, 7.509824, 72.321815, -43.78305, -183.331)
 mesh = ExtResource("10_1rywj")
 
-[node name="GenObject_360" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(2.8612258, 0, 9.123326, 0, 9.561469, 0, -9.123326, 0, 2.8612258, 192.01985, -210.12355, -84.83461)
-mesh = ExtResource("10_1rywj")
-
 [node name="GenObject_361" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(6.660534, 0, 5.1649594, 0, 8.428494, 0, -5.1649594, 0, 6.660534, 141.93703, -139.52802, -450.74207)
 mesh = ExtResource("10_1rywj")
@@ -5570,10 +5421,6 @@ mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_374" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(8.542796, 0, 3.4133847, 0, 9.199487, 0, -3.4133847, 0, 8.542796, 23.442657, -57.602142, -141.45166)
-mesh = ExtResource("12_aniw7")
-
-[node name="GenObject_375" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-9.505558, 0, -5.3164086, 0, 10.8912735, 0, 5.3164086, 0, -9.505558, 176.08315, -288.79343, 44.24716)
 mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_376" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
@@ -5664,10 +5511,6 @@ mesh = ExtResource("11_6kgm5")
 transform = Transform3D(11.4903345, 0, 2.821921, 0, 11.83178, 0, -2.821921, 0, 11.4903345, -12.769653, -29.498932, -103.3667)
 mesh = ExtResource("10_1rywj")
 
-[node name="GenObject_398" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(8.622264, 0, 1.0274254, 0, 8.683262, 0, -1.0274254, 0, 8.622264, 180.53209, -294.04156, 65.69537)
-mesh = ExtResource("12_aniw7")
-
 [node name="GenObject_399" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-11.07194, 0, 3.4480715, 0, 11.596424, 0, -3.4480715, 0, -11.07194, -39.09041, -162.1138, -400.0121)
 mesh = ExtResource("10_1rywj")
@@ -5752,10 +5595,6 @@ mesh = ExtResource("12_aniw7")
 transform = Transform3D(-9.228365, 0, 4.9621325, 0, 10.477857, 0, -4.9621325, 0, -9.228365, 191.14992, -102.99158, -366.57184)
 mesh = ExtResource("12_aniw7")
 
-[node name="GenObject_420" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(9.825449, 0, 3.0899014, 0, 10.299851, 0, -3.0899014, 0, 9.825449, 192.83534, -302.74945, 93.895905)
-mesh = ExtResource("10_1rywj")
-
 [node name="GenObject_421" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-10.963837, 0, -0.6825845, 0, 10.985064, 0, 0.6825845, 0, -10.963837, -165.76047, -129.31488, -541.3726)
 mesh = ExtResource("12_aniw7")
@@ -5780,10 +5619,6 @@ mesh = ExtResource("10_1rywj")
 transform = Transform3D(-5.466692, 0, -7.660322, 0, 9.410912, 0, 7.660322, 0, -5.466692, -185.88649, -87.7829, -417.9618)
 mesh = ExtResource("10_1rywj")
 
-[node name="GenObject_427" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(6.4498353, 0, 5.504462, 0, 8.479356, 0, -5.504462, 0, 6.4498353, 199.38025, -217.06313, -74.17885)
-mesh = ExtResource("11_6kgm5")
-
 [node name="GenObject_428" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-8.817733, 0, 2.7119064, 0, 9.225337, 0, -2.7119064, 0, -8.817733, 137.00131, -142.2492, -454.74487)
 mesh = ExtResource("10_1rywj")
@@ -5806,10 +5641,6 @@ mesh = ExtResource("11_6kgm5")
 
 [node name="GenObject_433" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(10.208186, 0, -1.0816224, 0, 10.265328, 0, 1.0816224, 0, 10.208186, -20.038536, -31.187592, -124.007706)
-mesh = ExtResource("10_1rywj")
-
-[node name="GenObject_434" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-1.0364932, 0, -8.7227125, 0, 8.784079, 0, 8.7227125, 0, -1.0364932, 180.91438, -294.01563, 64.96277)
 mesh = ExtResource("10_1rywj")
 
 [node name="GenObject_435" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
@@ -5924,10 +5755,6 @@ mesh = ExtResource("12_aniw7")
 transform = Transform3D(-8.453687, 0, -5.0973673, 0, 9.871574, 0, 5.0973673, 0, -8.453687, 4.348221, -34.038605, -87.62289)
 mesh = ExtResource("12_aniw7")
 
-[node name="GenObject_463" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(2.5687156, 0, -9.280828, 0, 9.629749, 0, 9.280828, 0, 2.5687156, 177.66548, -294.13058, 70.62088)
-mesh = ExtResource("12_aniw7")
-
 [node name="GenObject_464" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(7.7563334, 0, -5.957369, 0, 9.78013, 0, 5.957369, 0, 7.7563334, 48.90885, -226.34073, -570.0832)
 mesh = ExtResource("12_aniw7")
@@ -5943,10 +5770,6 @@ mesh = ExtResource("10_1rywj")
 [node name="GenObject_467" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(6.925004, 0, 9.5715275, 0, 11.813968, 0, -9.5715275, 0, 6.925004, 126.51918, -148.20355, -463.581)
 mesh = ExtResource("11_6kgm5")
-
-[node name="GenObject_468" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(10.8959055, 0, -3.3246126, 0, 11.39183, 0, 3.3246126, 0, 10.8959055, 198.62398, -286.64807, 14.816231)
-mesh = ExtResource("12_aniw7")
 
 [node name="GenObject_469" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-11.394944, 0, 2.3049564, 0, 11.625729, 0, -2.3049564, 0, -11.394944, -37.612556, -160.95406, -391.0585)
@@ -6036,10 +5859,6 @@ mesh = ExtResource("11_6kgm5")
 transform = Transform3D(-1.9401993, 0, 8.427769, 0, 8.648217, 0, -8.427769, 0, -1.9401993, -152.60841, -96.11746, -403.50998)
 mesh = ExtResource("12_aniw7")
 
-[node name="GenObject_491" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(10.5287485, 0, 2.452104, 0, 10.810521, 0, -2.452104, 0, 10.5287485, 190.38863, -291.57056, 44.549393)
-mesh = ExtResource("12_aniw7")
-
 [node name="GenObject_492" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(-9.132381, 0, -0.7911754, 0, 9.166589, 0, 0.7911754, 0, -9.132381, 112.6857, -36.56668, -192.21448)
 mesh = ExtResource("12_aniw7")
@@ -6051,10 +5870,6 @@ mesh = ExtResource("11_6kgm5")
 [node name="GenObject_494" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(4.8133087, 0, 7.687675, 0, 9.070187, 0, -7.687675, 0, 4.8133087, 21.684525, -55.10019, -135.21294)
 mesh = ExtResource("11_6kgm5")
-
-[node name="GenObject_495" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
-transform = Transform3D(-7.6561656, 0, 4.2926564, 0, 8.777458, 0, -4.2926564, 0, -7.6561656, 187.46284, -286.5206, 23.822327)
-mesh = ExtResource("10_1rywj")
 
 [node name="GenObject_496" type="MeshInstance3D" parent="Environment/Foliage/Flower Scatterer"]
 transform = Transform3D(1.0048828, 0, -10.932667, 0, 10.978752, 0, 10.932667, 0, 1.0048828, 160.50867, -202.40942, -583.968)

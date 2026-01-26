@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://437ld5xtvdju"]
+[gd_scene load_steps=11 format=4 uid="uid://437ld5xtvdju"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bf5ud"]
 
@@ -34,8 +34,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5q511")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5q511"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a615r"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_5q511")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sq24k"]
 albedo_color = Color(0.31418642, 0.237609, 0.18654633, 1)
+roughness_texture = SubResource("NoiseTexture2D_a615r")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lrssi"]
 

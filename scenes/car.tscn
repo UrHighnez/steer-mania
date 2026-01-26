@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2h67xe24s0o7"]
+[gd_scene load_steps=10 format=3 uid="uid://d2h67xe24s0o7"]
 
 [ext_resource type="Script" uid="uid://c13owiby5n1lo" path="res://scripts/car_controller.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://crp3owinplplg" path="res://scenes/wheel_rubber_visuals.tscn" id="2_jtldb"]
@@ -9,8 +9,20 @@ size = Vector3(1.5, 0.35, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t3gmr"]
 
+[sub_resource type="Gradient" id="Gradient_50v30"]
+offsets = PackedFloat32Array(0.1440678, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jtldb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3mrxu"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_jtldb")
+color_ramp = SubResource("Gradient_50v30")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50v30"]
 albedo_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
+albedo_texture = SubResource("NoiseTexture2D_3mrxu")
 
 [node name="VehicleBody3D" type="VehicleBody3D" groups=["player"]]
 mass = 20.0

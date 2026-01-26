@@ -89,10 +89,10 @@ text = "Rubber Wheels"
 
 [node name="Start Race" type="Button" parent="HUD/UI"]
 layout_mode = 0
-offset_left = 915.0
-offset_top = 427.0
-offset_right = 1027.2903
-offset_bottom = 540.27423
+offset_left = 911.0
+offset_top = 94.0
+offset_right = 1023.2903
+offset_bottom = 207.27423
 text = "Start Race"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
