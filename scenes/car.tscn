@@ -46,7 +46,7 @@ wheel_roll_influence = 0.8
 wheel_friction_slip = 1.8
 suspension_stiffness = 50.0
 
-[node name="Wheel Mesh" parent="VehicleWheel3D BR" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D BR" instance=ExtResource("2_jtldb")]
 
 [node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -0.12, -1.2)
@@ -56,7 +56,7 @@ wheel_roll_influence = 0.8
 wheel_friction_slip = 2.0
 suspension_stiffness = 50.0
 
-[node name="Wheel Mesh" parent="VehicleWheel3D FR" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D FR" instance=ExtResource("2_jtldb")]
 
 [node name="VehicleWheel3D BL" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.12, 1.2)
@@ -64,7 +64,7 @@ wheel_roll_influence = 0.8
 wheel_friction_slip = 1.8
 suspension_stiffness = 50.0
 
-[node name="Wheel Mesh" parent="VehicleWheel3D BL" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D BL" instance=ExtResource("2_jtldb")]
 
 [node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.12, -1.2)
@@ -74,7 +74,7 @@ wheel_roll_influence = 0.8
 wheel_friction_slip = 2.0
 suspension_stiffness = 50.0
 
-[node name="Wheel Mesh" parent="VehicleWheel3D FL" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D FL" instance=ExtResource("2_jtldb")]
 
 [node name="Assembler" type="Node3D" parent="." node_paths=PackedStringArray("wheels_front", "wheels_back")]
 script = ExtResource("3_3mrxu")

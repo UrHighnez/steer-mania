@@ -48,7 +48,7 @@ gravity_scale = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="UI" type="Control" parent="HUD" node_paths=PackedStringArray("car_assembler")]
+[node name="UI" type="Control" parent="HUD" node_paths=PackedStringArray("car_assembler", "pb_label", "fade_overlay")]
 layout_direction = 4
 layout_mode = 3
 anchors_preset = 15
@@ -58,6 +58,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_gnlqp")
 car_assembler = NodePath("../../VehicleBody3D/Assembler")
+pb_label = NodePath("TimeLabel/PBTimeLabel")
+fade_overlay = NodePath("../FadeOverlay")
 chassis_light = ExtResource("3_d8qye")
 chassis_heavy = ExtResource("4_18b1i")
 wheel_wood = ExtResource("5_47l8i")
@@ -71,23 +73,23 @@ offset_top = 85.0
 offset_right = 398.5
 offset_bottom = 317.50003
 
-[node name="Light Chassis" type="Button" parent="HUD/UI/VBoxContainer"]
+[node name="LightChassisBtn" type="Button" parent="HUD/UI/VBoxContainer"]
 layout_mode = 2
 text = "Light Chassis"
 
-[node name="Heavy Chassis" type="Button" parent="HUD/UI/VBoxContainer"]
+[node name="HeavyChassisBtn" type="Button" parent="HUD/UI/VBoxContainer"]
 layout_mode = 2
 text = "Heavy Chassis"
 
-[node name="Wood Wheels" type="Button" parent="HUD/UI/VBoxContainer"]
+[node name="WoodWheelsBtn" type="Button" parent="HUD/UI/VBoxContainer"]
 layout_mode = 2
 text = "Wood Wheels"
 
-[node name="Rubber Wheels" type="Button" parent="HUD/UI/VBoxContainer"]
+[node name="RubberWheelsBtn" type="Button" parent="HUD/UI/VBoxContainer"]
 layout_mode = 2
 text = "Rubber Wheels"
 
-[node name="Start Race" type="Button" parent="HUD/UI"]
+[node name="StartRaceBtn" type="Button" parent="HUD/UI"]
 layout_mode = 0
 offset_left = 911.0
 offset_top = 94.0
@@ -95,14 +97,38 @@ offset_right = 1023.2903
 offset_bottom = 207.27423
 text = "Start Race"
 
+[node name="TimeLabel" type="Control" parent="HUD/UI"]
+anchors_preset = 0
+offset_left = 1000.0
+offset_right = 1040.0
+offset_bottom = 40.0
+
+[node name="PBTimeLabel" type="Label" parent="HUD/UI/TimeLabel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 32.0
+offset_right = 106.0
+offset_bottom = 55.0
+text = "00:00.00"
+
+[node name="FadeOverlay" type="ColorRect" parent="HUD"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d8qye")
 camera_attributes = SubResource("CameraAttributesPractical_d8qye")
 
-[connection signal="pressed" from="HUD/UI/VBoxContainer/Light Chassis" to="HUD/UI" method="_on_btn_light_pressed"]
-[connection signal="pressed" from="HUD/UI/VBoxContainer/Heavy Chassis" to="HUD/UI" method="_on_btn_heavy_pressed"]
-[connection signal="pressed" from="HUD/UI/VBoxContainer/Wood Wheels" to="HUD/UI" method="_on_btn_wood_pressed"]
-[connection signal="pressed" from="HUD/UI/VBoxContainer/Rubber Wheels" to="HUD/UI" method="_on_btn_rubber_pressed"]
-[connection signal="pressed" from="HUD/UI/Start Race" to="HUD/UI" method="_on_btn_start_race_pressed"]
+[connection signal="pressed" from="HUD/UI/VBoxContainer/LightChassisBtn" to="HUD/UI" method="_on_btn_light_pressed"]
+[connection signal="pressed" from="HUD/UI/VBoxContainer/HeavyChassisBtn" to="HUD/UI" method="_on_btn_heavy_pressed"]
+[connection signal="pressed" from="HUD/UI/VBoxContainer/WoodWheelsBtn" to="HUD/UI" method="_on_btn_wood_pressed"]
+[connection signal="pressed" from="HUD/UI/VBoxContainer/RubberWheelsBtn" to="HUD/UI" method="_on_btn_rubber_pressed"]
+[connection signal="pressed" from="HUD/UI/StartRaceBtn" to="HUD/UI" method="_on_btn_start_race_pressed"]
 
 [editable path="VehicleBody3D"]
