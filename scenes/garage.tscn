@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://isy0ugnwx738"]
+[gd_scene load_steps=13 format=3 uid="uid://isy0ugnwx738"]
 
 [ext_resource type="PackedScene" uid="uid://d2h67xe24s0o7" path="res://scenes/car.tscn" id="1_jceud"]
 [ext_resource type="Script" uid="uid://0dhdt2elu6c1" path="res://scripts/garage_ui.gd" id="2_gnlqp"]
@@ -11,6 +11,22 @@
 albedo_color = Color(0.2801495, 0.26968017, 0.23827218, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_f50xb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d8qye"]
+ground_bottom_color = Color(0.07450686, 0.19224218, 0.41101968, 1)
+ground_horizon_color = Color(0, 0.5625355, 0.89387566, 1)
+ground_curve = 0.08282144
+
+[sub_resource type="Sky" id="Sky_18b1i"]
+sky_material = SubResource("ProceduralSkyMaterial_d8qye")
+
+[sub_resource type="Environment" id="Environment_d8qye"]
+background_mode = 2
+background_color = Color(0.0017442103, 0.1554479, 0.2956251, 1)
+sky = SubResource("Sky_18b1i")
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_d8qye"]
 
 [node name="Garage" type="Node3D"]
 
@@ -78,6 +94,10 @@ offset_top = 427.0
 offset_right = 1027.2903
 offset_bottom = 540.27423
 text = "Start Race"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d8qye")
+camera_attributes = SubResource("CameraAttributesPractical_d8qye")
 
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Light Chassis" to="CanvasLayer/UI" method="_on_btn_light_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Heavy Chassis" to="CanvasLayer/UI" method="_on_btn_heavy_pressed"]

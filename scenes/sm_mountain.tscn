@@ -3,15 +3,19 @@
 [ext_resource type="PackedScene" uid="uid://c885tg0cl0xt8" path="res://models/SM_Mountain.glb" id="1_o2f7r"]
 
 [sub_resource type="Gradient" id="Gradient_o2f7r"]
+offsets = PackedFloat32Array(0, 0.5875706, 0.7457627)
+colors = PackedColorArray(0.29954746, 0.29954746, 0.29954743, 1, 0.6836158, 0.6836158, 0.6836158, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8fwfk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2qrxk"]
+width = 1024
+height = 1024
 noise = SubResource("FastNoiseLite_8fwfk")
 color_ramp = SubResource("Gradient_o2f7r")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fwfk"]
-albedo_color = Color(0.14652243, 0.23129189, 0.14748016, 1)
+albedo_color = Color(0.11710132, 0.17050421, 0.12774941, 1)
 albedo_texture = SubResource("NoiseTexture2D_2qrxk")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o2f7r"]
