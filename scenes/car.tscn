@@ -12,7 +12,7 @@ size = Vector3(1.5, 0.35, 3)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50v30"]
 albedo_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 
-[node name="VehicleBody3D" type="VehicleBody3D"]
+[node name="VehicleBody3D" type="VehicleBody3D" groups=["player"]]
 mass = 20.0
 center_of_mass_mode = 1
 script = ExtResource("1_50v30")
