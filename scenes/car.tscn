@@ -25,6 +25,7 @@ albedo_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 albedo_texture = SubResource("NoiseTexture2D_3mrxu")
 
 [node name="VehicleBody3D" type="VehicleBody3D" groups=["player"]]
+collision_layer = 2
 mass = 20.0
 center_of_mass_mode = 1
 script = ExtResource("1_50v30")
