@@ -6,9 +6,7 @@ class_name CarAssembler
 @export var wheels_front: Array[VehicleWheel3D]
 @export var wheels_back: Array[VehicleWheel3D]
 
-func _ready():
-	print("Assembler gestartet!")
-	
+func _ready():	
 	# 1. Daten abrufen
 	var chassis_data = GameManager.selected_chassis
 	var wheel_data = GameManager.selected_wheels
@@ -50,21 +48,32 @@ func _apply_chassis(data: CarChassisResource):
 		var new_chassis_root = data.chassis_scene.instantiate()
 		new_chassis_root.name = "ActiveChassis"
 		
-		# --- SCHRITT 3: COLLISION TRANSPLANTATION ---
-		# (Bleibt gleich: Shape ans Auto, Rest an den Mount-Point)
-		var found_shape = null
-		for child in new_chassis_root.get_children():
-			if child is CollisionShape3D:
-				found_shape = child
-				break
+		# --- SCHRITT 3: COLLISION TRANSPLANTATION (ROBUST) ---
+		var found_shape: CollisionShape3D = null
 		
-		if found_shape:
-			new_chassis_root.remove_child(found_shape)
+		# "find_children" sucht rekursiv ("true") nach allen Nodes vom Typ "CollisionShape3D".
+		# Das "*" bedeutet "jeder Name". 
+		var shapes = new_chassis_root.find_children("*", "CollisionShape3D", true, false)
+		
+		if shapes.size() > 0:
+			found_shape = shapes[0] # Wir nehmen den ersten gefundenen Collider
+			
+			# WICHTIG: Wenn der Collider in einer Untergruppe war, müssen wir ihn vorsichtig lösen.
+			# Wir nutzen 'reparent', falls möglich, oder die manuelle Methode.
+			# Da new_chassis_root noch nicht im Tree ist, ist manuell hier oft sicherer für Positionen:
+			
+			found_shape.get_parent().remove_child(found_shape) # Vom alten Elternteil lösen (egal wo er war)
+			
 			found_shape.name = "ActiveChassisShape"
-			# Shape MUSS an den VehicleBody (Physik zu Physik)
-			# Wir nutzen call_deferred zur Sicherheit
+			
+			# ACHTUNG bei Importen: Falls dein Collider im Blender-Modell in einer skalierten/rotierten 
+			# Untergruppe war, geht diese Transformation hier verloren (da wir nur den Node verschieben).
+			# Regel: Collider im Blender immer ohne Parent-Transformation (Scale 1,1,1) exportieren!
+			
 			car.add_child.call_deferred(found_shape)
-			print("CollisionShape transplantiert.")
+			print("CollisionShape (rekursiv) gefunden und transplantiert.")
+		else:
+			push_warning("ACHTUNG: Kein CollisionShape3D in der Chassis-Szene gefunden! Physik wird fehlerhaft sein.")
 		
 		# --- SCHRITT 4: VISUALS HINZUFÜGEN ---
 		# Das Chassis kommt jetzt an den sicheren Mount-Point!
