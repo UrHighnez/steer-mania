@@ -19,10 +19,10 @@ func _ready():
 	load_best_time()
 	update_best_time_display()
 	
-	# Initial Fade-In
-	fade_overlay.modulate.a = 1.0
-	var tween = create_tween()
-	tween.tween_property(fade_overlay, "modulate:a", 0.0, 1.0)
+	# Entry Fade: Snappy 0.4 seconds
+	if fade_overlay:
+		var tween = create_tween()
+		tween.tween_property(fade_overlay, "modulate:a", 0.0, 0.4).set_trans(Tween.TRANS_SINE)
 	
 	is_racing = true
 	
@@ -73,7 +73,7 @@ func game_won():
 		win_label.text = text
 		win_label.show()
 	
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	fade_and_exit()
 
 func save_best_time():
@@ -99,7 +99,7 @@ func _on_course_boundary_exited(body):
 
 func fade_and_exit():
 	var tween = create_tween()
-	tween.tween_property(fade_overlay, "modulate:a", 1.0, 1.0)
+	tween.tween_property(fade_overlay, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
 	await tween.finished
 	if garage_scene_path != "":
 		get_tree().change_scene_to_file(garage_scene_path)

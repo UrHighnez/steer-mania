@@ -46,7 +46,7 @@ height = 1.0
 radius = 8.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bm22b"]
-size = Vector3(199.64026, 230.93655, 584.2526)
+size = Vector3(190.7488, 275.5371, 621.30707)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d1w0v"]
 sky_top_color = Color(0.11579851, 0.35755262, 0.7178707, 1)
@@ -433,7 +433,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Track/CourseBoundary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.481873, -105.74745, -283.65768)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.927605, -128.04773, -302.1849)
 shape = SubResource("BoxShape3D_bm22b")
 
 [node name="Environment" type="Node3D" parent="."]
@@ -5941,7 +5941,6 @@ offset_bottom = 55.0
 text = "00:00.00"
 
 [node name="FadeOverlay" type="ColorRect" parent="HUD"]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

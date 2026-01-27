@@ -21,11 +21,11 @@ extends Control
 const SAVE_PATH = "user://best_time.save"
 
 func _ready():
-	# 1. Setup UI Appearance
+	# 1. Setup UI Appearance - Start from black (set in editor) to clear
 	if fade_overlay:
-		fade_overlay.modulate.a = 1.0
 		var tween = create_tween()
-		tween.tween_property(fade_overlay, "modulate:a", 0.0, 0.8)
+		# Reduced to 0.4s for a snappier entrance
+		tween.tween_property(fade_overlay, "modulate:a", 0.0, 0.4).set_trans(Tween.TRANS_SINE)
 	
 	# 2. Display Personal Best
 	_display_personal_best()
@@ -81,14 +81,12 @@ func _on_btn_rubber_pressed():
 	car_assembler._apply_wheels(wheel_rubber)
 
 func _on_btn_start_race_pressed():
-	if not race_scene_path:
-		printerr("ERROR: Race scene path is missing!")
-		return
+	if not race_scene_path: return
 	
-	# Smooth Fade Out before changing scene
 	if fade_overlay:
 		var tween = create_tween()
-		tween.tween_property(fade_overlay, "modulate:a", 1.0, 0.5)
+		# Reduced to 0.3s for a fast exit
+		tween.tween_property(fade_overlay, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
 		await tween.finished
 		
 	get_tree().change_scene_to_file(race_scene_path)
