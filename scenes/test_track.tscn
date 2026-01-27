@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://baawn2w8fbjpc"]
+[gd_scene load_steps=33 format=3 uid="uid://baawn2w8fbjpc"]
 
 [ext_resource type="Script" uid="uid://ddfljqie4olrc" path="res://scripts/main.gd" id="1_bm22b"]
 [ext_resource type="PackedScene" uid="uid://d2h67xe24s0o7" path="res://scenes/car.tscn" id="1_c6jrw"]
@@ -16,6 +16,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dr2swuhptl8ka" path="res://models/flower_yellowA_mesh.res" id="12_aniw7"]
 [ext_resource type="ArrayMesh" uid="uid://va5gejir0inm" path="res://models/rock_largeB_mesh.res" id="14_of88p"]
 [ext_resource type="ArrayMesh" uid="uid://v7q62kpveopc" path="res://models/rock_largeD_mesh.res" id="15_bm22b"]
+[ext_resource type="PackedScene" uid="uid://suu5jelbb82l" path="res://scenes/fade_overlay.tscn" id="17_j0e4w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sskuf"]
 albedo_color = Color(0.11119685, 0.11119685, 0.11119679, 1)
@@ -5940,11 +5941,5 @@ offset_right = 106.0
 offset_bottom = 55.0
 text = "00:00.00"
 
-[node name="FadeOverlay" type="ColorRect" parent="HUD"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+[node name="FadeOverlay" parent="HUD" instance=ExtResource("17_j0e4w")]
+visible = false

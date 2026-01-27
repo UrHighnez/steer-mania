@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://isy0ugnwx738"]
+[gd_scene load_steps=14 format=3 uid="uid://isy0ugnwx738"]
 
 [ext_resource type="PackedScene" uid="uid://d2h67xe24s0o7" path="res://scenes/car.tscn" id="1_jceud"]
 [ext_resource type="Script" uid="uid://0dhdt2elu6c1" path="res://scripts/garage_ui.gd" id="2_gnlqp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bfg23g8eydosl" path="res://resources/chassis_heavy.tres" id="4_18b1i"]
 [ext_resource type="Resource" uid="uid://cgk2134h3uyqa" path="res://resources/wheel_wood.tres" id="5_47l8i"]
 [ext_resource type="Resource" uid="uid://2grudxv4j4h" path="res://resources/wheel_rubber.tres" id="6_v0fcm"]
+[ext_resource type="PackedScene" uid="uid://suu5jelbb82l" path="res://scenes/fade_overlay.tscn" id="7_18b1i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnlqp"]
 albedo_color = Color(0.2801495, 0.26968017, 0.23827218, 1)
@@ -13,8 +14,10 @@ albedo_color = Color(0.2801495, 0.26968017, 0.23827218, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_f50xb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d8qye"]
+sky_top_color = Color(0.07450981, 0.19215687, 0.4117647, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
 ground_bottom_color = Color(0.07450686, 0.19224218, 0.41101968, 1)
-ground_horizon_color = Color(0, 0.5625355, 0.89387566, 1)
+ground_horizon_color = Color(0.8687151, 0.88564676, 0.8915879, 1)
 ground_curve = 0.08282144
 
 [sub_resource type="Sky" id="Sky_18b1i"]
@@ -68,10 +71,10 @@ race_scene_path = "uid://baawn2w8fbjpc"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/UI"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 85.0
-offset_right = 398.5
-offset_bottom = 317.50003
+offset_left = 66.0
+offset_top = 50.0
+offset_right = 400.5
+offset_bottom = 282.50003
 
 [node name="LightChassisBtn" type="Button" parent="HUD/UI/VBoxContainer"]
 layout_mode = 2
@@ -91,17 +94,18 @@ text = "Rubber Wheels"
 
 [node name="StartRaceBtn" type="Button" parent="HUD/UI"]
 layout_mode = 0
-offset_left = 911.0
-offset_top = 94.0
-offset_right = 1023.2903
-offset_bottom = 207.27423
+offset_left = 998.0
+offset_top = 67.0
+offset_right = 1110.2903
+offset_bottom = 180.27423
 text = "Start Race"
 
 [node name="TimeLabel" type="Control" parent="HUD/UI"]
 anchors_preset = 0
-offset_left = 1000.0
-offset_right = 1040.0
-offset_bottom = 40.0
+offset_left = 871.0
+offset_top = 6.0
+offset_right = 911.0
+offset_bottom = 46.0
 
 [node name="PBTimeLabel" type="Label" parent="HUD/UI/TimeLabel"]
 layout_mode = 0
@@ -110,16 +114,10 @@ offset_top = 32.0
 offset_right = 106.0
 offset_bottom = 55.0
 text = "00:00.00"
+horizontal_alignment = 2
 
-[node name="FadeOverlay" type="ColorRect" parent="HUD"]
-modulate = Color(0, 0, 0, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+[node name="FadeOverlay" parent="HUD" instance=ExtResource("7_18b1i")]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d8qye")
