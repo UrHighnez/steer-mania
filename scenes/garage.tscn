@@ -19,7 +19,7 @@ albedo_color = Color(0.2801495, 0.26968017, 0.23827218, 1)
 sky_top_color = Color(0.07450981, 0.19215687, 0.4117647, 1)
 sky_horizon_color = Color(1, 1, 1, 1)
 ground_bottom_color = Color(0.07450686, 0.19224218, 0.41101968, 1)
-ground_horizon_color = Color(0.8687151, 0.88564676, 0.8915879, 1)
+ground_horizon_color = Color(0.07450981, 0.19215687, 0.4117647, 1)
 ground_curve = 0.08282144
 
 [sub_resource type="Sky" id="Sky_18b1i"]
@@ -48,12 +48,12 @@ material_override = SubResource("StandardMaterial3D_gnlqp")
 mesh = SubResource("CylinderMesh_f50xb")
 
 [node name="VehicleBody3D" parent="." unique_id=1193777749 instance=ExtResource("1_jceud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08579922, 0.21564853, -0.03705682)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.08579922, 0.21564853, -0.03705682)
 gravity_scale = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=944776966]
 
-[node name="UI" type="Control" parent="HUD" unique_id=1731076799 node_paths=PackedStringArray("car_assembler", "pb_label", "fade_overlay", "lbl_chassis_name", "lbl_wheel_name")]
+[node name="UI" type="Control" parent="HUD" unique_id=1731076799 node_paths=PackedStringArray("car_assembler", "pb_label", "fade_overlay", "lbl_chassis_name", "lbl_wheel_name", "bar_weight", "bar_grip")]
 layout_direction = 4
 layout_mode = 3
 anchors_preset = 15
@@ -63,10 +63,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_gnlqp")
 car_assembler = NodePath("../../VehicleBody3D/Assembler")
-pb_label = NodePath("MenuPanel/MarginContainer/Content_VBoxContainer/PBTimeLabel")
+pb_label = NodePath("MenuPanel/MarginContainer/Navigation_VBoxContainer/PBTimeLabel")
 fade_overlay = NodePath("../FadeOverlay")
-lbl_chassis_name = NodePath("MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer/ChassisName")
-lbl_wheel_name = NodePath("MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2/WheelsName")
+lbl_chassis_name = NodePath("MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer/ChassisName")
+lbl_wheel_name = NodePath("MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer2/WheelsName")
+bar_weight = NodePath("MenuPanel/MarginContainer/Stats_VBoxContainer/WeightLabel/Bar_Weight")
+bar_grip = NodePath("MenuPanel/MarginContainer/Stats_VBoxContainer/GripLabel/Bar_Grip")
 chassis_options = Array[ExtResource("3_18b1i")]([ExtResource("4_v0fcm"), ExtResource("5_oyih7")])
 wheel_options = Array[ExtResource("6_oyih7")]([ExtResource("7_8ish0"), ExtResource("8_4laxj")])
 race_scene_path = "uid://baawn2w8fbjpc"
@@ -81,62 +83,18 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Content_VBoxContainer" type="VBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer" unique_id=75534036]
+[node name="Navigation_VBoxContainer" type="VBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer" unique_id=536953140]
 layout_mode = 2
 
-[node name="PBTimeLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1573719645]
+[node name="PBTimeLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Navigation_VBoxContainer" unique_id=1573719645]
 layout_mode = 2
 text = "00:00.00"
 horizontal_alignment = 2
 
-[node name="HSeparator" type="HSeparator" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1100313837]
-layout_mode = 2
-
-[node name="ChassisLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=205113270]
-layout_mode = 2
-text = "Chassis"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1444629191]
-layout_mode = 2
-
-[node name="PrevChassisBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer" unique_id=810022771]
-layout_mode = 2
-text = "<"
-
-[node name="ChassisName" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer" unique_id=392432054]
-layout_mode = 2
-size_flags_horizontal = 6
-horizontal_alignment = 1
-
-[node name="NextChassisBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer" unique_id=219677287]
-layout_mode = 2
-text = ">"
-
-[node name="WheelsLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1326692031]
-layout_mode = 2
-text = "Wheels"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=2121602973]
-layout_mode = 2
-
-[node name="PrevWheelsBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2" unique_id=2140894315]
-layout_mode = 2
-text = "<"
-
-[node name="WheelsName" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2" unique_id=1160221995]
-layout_mode = 2
-size_flags_horizontal = 6
-horizontal_alignment = 1
-
-[node name="NextWheelsBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2" unique_id=209283859]
-layout_mode = 2
-text = ">"
-
-[node name="Spacer_Control" type="Control" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1620610450]
-layout_mode = 2
-
-[node name="StartRaceBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1727443202]
+[node name="StartRaceBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Navigation_VBoxContainer" unique_id=1727443202]
 layout_mode = 2
 text = "Start Race"
 metadata/heavy = false
@@ -144,16 +102,106 @@ metadata/light = false
 metadata/rubber = false
 metadata/wood = false
 
+[node name="Garage_VBoxContainer" type="VBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer" unique_id=75534036]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ChassisLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=205113270]
+layout_mode = 2
+text = "Chassis"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=1444629191]
+layout_mode = 2
+
+[node name="PrevChassisBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer" unique_id=810022771]
+layout_mode = 2
+text = "<"
+
+[node name="ChassisName" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer" unique_id=392432054]
+layout_mode = 2
+size_flags_horizontal = 6
+horizontal_alignment = 1
+
+[node name="NextChassisBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer" unique_id=219677287]
+layout_mode = 2
+text = ">"
+
+[node name="WheelsLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=1326692031]
+layout_mode = 2
+text = "Wheels"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=2121602973]
+layout_mode = 2
+
+[node name="PrevWheelsBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer2" unique_id=2140894315]
+layout_mode = 2
+text = "<"
+
+[node name="WheelsName" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer2" unique_id=1160221995]
+layout_mode = 2
+size_flags_horizontal = 6
+horizontal_alignment = 1
+
+[node name="NextWheelsBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer2" unique_id=209283859]
+layout_mode = 2
+text = ">"
+
+[node name="Spacer_Control" type="Control" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=1620610450]
+layout_mode = 2
+
+[node name="Stats_VBoxContainer" type="VBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer" unique_id=792516228]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="WeightLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer" unique_id=2093122791]
+layout_mode = 2
+text = "Total Weight
+"
+
+[node name="Bar_Weight" type="ProgressBar" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer/WeightLabel" unique_id=1993143399]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 200.0
+step = 1.0
+show_percentage = false
+
+[node name="GripLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer" unique_id=567028489]
+layout_mode = 2
+text = "Wheel Grip
+"
+
+[node name="Bar_Grip" type="ProgressBar" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer/GripLabel" unique_id=165514734]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 20.0
+value = 11.86
+show_percentage = false
+
 [node name="FadeOverlay" parent="HUD" unique_id=2115144803 instance=ExtResource("7_18b1i")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=48276869]
 environment = SubResource("Environment_d8qye")
 camera_attributes = SubResource("CameraAttributesPractical_d8qye")
 
-[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer/PrevChassisBtn" to="HUD/UI" method="_on_chassis_prev_pressed"]
-[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer/NextChassisBtn" to="HUD/UI" method="_on_chassis_next_pressed"]
-[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2/PrevWheelsBtn" to="HUD/UI" method="_on_wheels_prev_pressed"]
-[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2/NextWheelsBtn" to="HUD/UI" method="_on_wheels_next_pressed"]
-[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/StartRaceBtn" to="HUD/UI" method="_on_btn_start_race_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Navigation_VBoxContainer/StartRaceBtn" to="HUD/UI" method="_on_btn_start_race_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer/PrevChassisBtn" to="HUD/UI" method="_on_chassis_prev_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer/NextChassisBtn" to="HUD/UI" method="_on_chassis_next_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer2/PrevWheelsBtn" to="HUD/UI" method="_on_wheels_prev_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer2/NextWheelsBtn" to="HUD/UI" method="_on_wheels_next_pressed"]
 
 [editable path="VehicleBody3D"]

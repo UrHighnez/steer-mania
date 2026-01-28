@@ -7,6 +7,7 @@
 script = ExtResource("1_pytyu")
 display_name = "Wooden Wheels"
 wheel_scene = ExtResource("2_pytyu")
-wheel_friction_slip = 2.0
+mass = 2.5
+wheel_friction_slip = 3.0
 suspension_stiffness = 80.0
 metadata/_custom_type_script = "uid://2r2fa6vlwgp1"

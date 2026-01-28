@@ -7,4 +7,5 @@
 script = ExtResource("1_dteng")
 display_name = "Light Chassis"
 chassis_scene = ExtResource("1_y7f2r")
+mass = 20.0
 metadata/_custom_type_script = "uid://b6un8nviu3hcl"

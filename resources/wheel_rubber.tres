@@ -7,6 +7,6 @@
 script = ExtResource("1_yp6rj")
 display_name = "Rubber Wheels"
 wheel_scene = ExtResource("2_yp6rj")
-wheel_friction_slip = 8.0
+wheel_friction_slip = 10.0
 suspension_stiffness = 40.0
 metadata/_custom_type_script = "uid://2r2fa6vlwgp1"
