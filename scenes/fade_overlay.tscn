@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://suu5jelbb82l"]
+[gd_scene format=3 uid="uid://suu5jelbb82l"]
 
-[ext_resource type="Script" uid="uid://dvdperjokk4px" path="res://scenes/fade_overlay_helper.gd" id="1_suuf0"]
+[ext_resource type="Script" uid="uid://dvdperjokk4px" path="res://scripts/fade_overlay_helper.gd" id="1_suuf0"]
 
-[node name="FadeOverlay" type="ColorRect"]
+[node name="FadeOverlay" type="ColorRect" unique_id=58675160]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

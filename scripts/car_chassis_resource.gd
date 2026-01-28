@@ -2,7 +2,7 @@ extends Resource
 class_name CarChassisResource
 
 @export_group("Optik")
-@export var name: String = "Standard Chassis"
+@export var display_name: String = ""
 @export var chassis_scene: PackedScene # Hier ziehen wir später eine .tscn rein
 
 @export_group("Physik")

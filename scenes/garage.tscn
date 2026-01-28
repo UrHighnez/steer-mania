@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://isy0ugnwx738"]
+[gd_scene format=3 uid="uid://isy0ugnwx738"]
 
 [ext_resource type="PackedScene" uid="uid://d2h67xe24s0o7" path="res://scenes/car.tscn" id="1_jceud"]
 [ext_resource type="Script" uid="uid://0dhdt2elu6c1" path="res://scripts/garage_ui.gd" id="2_gnlqp"]
-[ext_resource type="Resource" uid="uid://0qo1u8ouel8a" path="res://resources/chassis_light.tres" id="3_d8qye"]
-[ext_resource type="Resource" uid="uid://bfg23g8eydosl" path="res://resources/chassis_heavy.tres" id="4_18b1i"]
-[ext_resource type="Resource" uid="uid://cgk2134h3uyqa" path="res://resources/wheel_wood.tres" id="5_47l8i"]
-[ext_resource type="Resource" uid="uid://2grudxv4j4h" path="res://resources/wheel_rubber.tres" id="6_v0fcm"]
+[ext_resource type="Script" uid="uid://b6un8nviu3hcl" path="res://scripts/car_chassis_resource.gd" id="3_18b1i"]
+[ext_resource type="Resource" uid="uid://0qo1u8ouel8a" path="res://resources/chassis_light.tres" id="4_v0fcm"]
+[ext_resource type="Resource" uid="uid://bfg23g8eydosl" path="res://resources/chassis_heavy.tres" id="5_oyih7"]
+[ext_resource type="Script" uid="uid://2r2fa6vlwgp1" path="res://scripts/car_wheels_resource.gd" id="6_oyih7"]
+[ext_resource type="Resource" uid="uid://cgk2134h3uyqa" path="res://resources/wheel_wood.tres" id="7_8ish0"]
 [ext_resource type="PackedScene" uid="uid://suu5jelbb82l" path="res://scenes/fade_overlay.tscn" id="7_18b1i"]
+[ext_resource type="Resource" uid="uid://2grudxv4j4h" path="res://resources/wheel_rubber.tres" id="8_4laxj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnlqp"]
 albedo_color = Color(0.2801495, 0.26968017, 0.23827218, 1)
@@ -31,27 +33,27 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_d8qye"]
 
-[node name="Garage" type="Node3D"]
+[node name="Garage" type="Node3D" unique_id=1355608256]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=355914741]
 transform = Transform3D(0.86983097, 0.21487626, -0.44409722, 0, 0.9001668, 0.43554536, 0.4933499, -0.37885085, 0.78299296, -2.23266, 1.5062556, 2.862112)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=291791267]
 transform = Transform3D(0.8111836, 0.25021964, -0.5285559, 0.19160725, 0.74022037, 0.6444848, 0.5525107, -0.62407064, 0.5525107, -3.1332262, 5, 2.9001813)
 light_energy = 2.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1337257757]
 transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, -0.7, 0)
 material_override = SubResource("StandardMaterial3D_gnlqp")
 mesh = SubResource("CylinderMesh_f50xb")
 
-[node name="VehicleBody3D" parent="." instance=ExtResource("1_jceud")]
+[node name="VehicleBody3D" parent="." unique_id=1193777749 instance=ExtResource("1_jceud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08579922, 0.21564853, -0.03705682)
 gravity_scale = 0.0
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=944776966]
 
-[node name="UI" type="Control" parent="HUD" node_paths=PackedStringArray("car_assembler", "pb_label", "fade_overlay")]
+[node name="UI" type="Control" parent="HUD" unique_id=1731076799 node_paths=PackedStringArray("car_assembler", "pb_label", "fade_overlay", "lbl_chassis_name", "lbl_wheel_name")]
 layout_direction = 4
 layout_mode = 3
 anchors_preset = 15
@@ -61,72 +63,97 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_gnlqp")
 car_assembler = NodePath("../../VehicleBody3D/Assembler")
-pb_label = NodePath("TimeLabel/PBTimeLabel")
+pb_label = NodePath("MenuPanel/MarginContainer/Content_VBoxContainer/PBTimeLabel")
 fade_overlay = NodePath("../FadeOverlay")
-chassis_light = ExtResource("3_d8qye")
-chassis_heavy = ExtResource("4_18b1i")
-wheel_wood = ExtResource("5_47l8i")
-wheel_rubber = ExtResource("6_v0fcm")
+lbl_chassis_name = NodePath("MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer/ChassisName")
+lbl_wheel_name = NodePath("MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2/WheelsName")
+chassis_options = Array[ExtResource("3_18b1i")]([ExtResource("4_v0fcm"), ExtResource("5_oyih7")])
+wheel_options = Array[ExtResource("6_oyih7")]([ExtResource("7_8ish0"), ExtResource("8_4laxj")])
 race_scene_path = "uid://baawn2w8fbjpc"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/UI"]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 50.0
-offset_right = 400.5
-offset_bottom = 282.50003
+[node name="MenuPanel" type="PanelContainer" parent="HUD/UI" unique_id=1111368028]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 
-[node name="LightChassisBtn" type="Button" parent="HUD/UI/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UI/MenuPanel" unique_id=468785390]
 layout_mode = 2
-text = "Light Chassis"
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 
-[node name="HeavyChassisBtn" type="Button" parent="HUD/UI/VBoxContainer"]
+[node name="Content_VBoxContainer" type="VBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer" unique_id=75534036]
 layout_mode = 2
-text = "Heavy Chassis"
 
-[node name="WoodWheelsBtn" type="Button" parent="HUD/UI/VBoxContainer"]
+[node name="PBTimeLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1573719645]
 layout_mode = 2
-text = "Wood Wheels"
-
-[node name="RubberWheelsBtn" type="Button" parent="HUD/UI/VBoxContainer"]
-layout_mode = 2
-text = "Rubber Wheels"
-
-[node name="StartRaceBtn" type="Button" parent="HUD/UI"]
-layout_mode = 0
-offset_left = 998.0
-offset_top = 67.0
-offset_right = 1110.2903
-offset_bottom = 180.27423
-text = "Start Race"
-
-[node name="TimeLabel" type="Control" parent="HUD/UI"]
-anchors_preset = 0
-offset_left = 871.0
-offset_top = 6.0
-offset_right = 911.0
-offset_bottom = 46.0
-
-[node name="PBTimeLabel" type="Label" parent="HUD/UI/TimeLabel"]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 32.0
-offset_right = 106.0
-offset_bottom = 55.0
 text = "00:00.00"
 horizontal_alignment = 2
 
-[node name="FadeOverlay" parent="HUD" instance=ExtResource("7_18b1i")]
-visible = false
+[node name="HSeparator" type="HSeparator" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1100313837]
+layout_mode = 2
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="ChassisLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=205113270]
+layout_mode = 2
+text = "Chassis"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1444629191]
+layout_mode = 2
+
+[node name="PrevChassisBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer" unique_id=810022771]
+layout_mode = 2
+text = "<"
+
+[node name="ChassisName" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer" unique_id=392432054]
+layout_mode = 2
+size_flags_horizontal = 6
+horizontal_alignment = 1
+
+[node name="NextChassisBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer" unique_id=219677287]
+layout_mode = 2
+text = ">"
+
+[node name="WheelsLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1326692031]
+layout_mode = 2
+text = "Wheels"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=2121602973]
+layout_mode = 2
+
+[node name="PrevWheelsBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2" unique_id=2140894315]
+layout_mode = 2
+text = "<"
+
+[node name="WheelsName" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2" unique_id=1160221995]
+layout_mode = 2
+size_flags_horizontal = 6
+horizontal_alignment = 1
+
+[node name="NextWheelsBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2" unique_id=209283859]
+layout_mode = 2
+text = ">"
+
+[node name="Spacer_Control" type="Control" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1620610450]
+layout_mode = 2
+
+[node name="StartRaceBtn" type="Button" parent="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer" unique_id=1727443202]
+layout_mode = 2
+text = "Start Race"
+metadata/heavy = false
+metadata/light = false
+metadata/rubber = false
+metadata/wood = false
+
+[node name="FadeOverlay" parent="HUD" unique_id=2115144803 instance=ExtResource("7_18b1i")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=48276869]
 environment = SubResource("Environment_d8qye")
 camera_attributes = SubResource("CameraAttributesPractical_d8qye")
 
-[connection signal="pressed" from="HUD/UI/VBoxContainer/LightChassisBtn" to="HUD/UI" method="_on_btn_light_pressed"]
-[connection signal="pressed" from="HUD/UI/VBoxContainer/HeavyChassisBtn" to="HUD/UI" method="_on_btn_heavy_pressed"]
-[connection signal="pressed" from="HUD/UI/VBoxContainer/WoodWheelsBtn" to="HUD/UI" method="_on_btn_wood_pressed"]
-[connection signal="pressed" from="HUD/UI/VBoxContainer/RubberWheelsBtn" to="HUD/UI" method="_on_btn_rubber_pressed"]
-[connection signal="pressed" from="HUD/UI/StartRaceBtn" to="HUD/UI" method="_on_btn_start_race_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer/PrevChassisBtn" to="HUD/UI" method="_on_chassis_prev_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer/NextChassisBtn" to="HUD/UI" method="_on_chassis_next_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2/PrevWheelsBtn" to="HUD/UI" method="_on_wheels_prev_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/HBoxContainer2/NextWheelsBtn" to="HUD/UI" method="_on_wheels_next_pressed"]
+[connection signal="pressed" from="HUD/UI/MenuPanel/MarginContainer/Content_VBoxContainer/StartRaceBtn" to="HUD/UI" method="_on_btn_start_race_pressed"]
 
 [editable path="VehicleBody3D"]

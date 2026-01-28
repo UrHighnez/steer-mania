@@ -2,7 +2,7 @@ extends Resource
 class_name CarWheelResource
 
 @export_group("Optik")
-@export var name: String = "Standard Rad"
+@export var display_name: String = ""
 @export var wheel_scene: PackedScene  # Hier ziehen wir später eine .tscn rein
 
 @export_group("Physik & Handling")

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="CarChassisResource" load_steps=3 format=3 uid="uid://bfg23g8eydosl"]
+[gd_resource type="Resource" script_class="CarChassisResource" format=3 uid="uid://bfg23g8eydosl"]
 
 [ext_resource type="Script" uid="uid://b6un8nviu3hcl" path="res://scripts/car_chassis_resource.gd" id="1_ajwwv"]
 [ext_resource type="PackedScene" uid="uid://basjryw3fg2gr" path="res://scenes/chassis_heavy_visuals.tscn" id="1_pns02"]
 
 [resource]
 script = ExtResource("1_ajwwv")
+display_name = "Heavy Chassis"
 chassis_scene = ExtResource("1_pns02")
 mass = 80.0
 metadata/_custom_type_script = "uid://b6un8nviu3hcl"
