@@ -7,5 +7,5 @@
 script = ExtResource("1_ajwwv")
 display_name = "Heavy Chassis"
 chassis_scene = ExtResource("1_pns02")
-mass = 60.0
+mass = 100.0
 metadata/_custom_type_script = "uid://b6un8nviu3hcl"

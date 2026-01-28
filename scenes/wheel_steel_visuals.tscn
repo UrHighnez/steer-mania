@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://437ld5xtvdju"]
+[gd_scene format=4 uid="uid://l68s2t58cynv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bf5ud"]
 
@@ -42,20 +42,20 @@ height = 128
 noise = SubResource("FastNoiseLite_5q511")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sq24k"]
-albedo_color = Color(0.31418642, 0.237609, 0.18654633, 1)
-metallic_specular = 0.15
+albedo_color = Color(0.20998833, 0.23674843, 0.23736799, 1)
+metallic = 0.7
 roughness_texture = SubResource("NoiseTexture2D_a615r")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lrssi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfxsf"]
-albedo_color = Color(0.15985087, 0.11603465, 0.080411024, 1)
+albedo_color = Color(0.22996756, 0.2502151, 0.24536994, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_0xyg0"]
 text = "✕"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l54h6"]
-albedo_color = Color(0.30401865, 0.24943486, 0.19800618, 1)
+albedo_color = Color(0.07185332, 0.093699075, 0.09370414, 1)
 
 [node name="WoodWheel" type="Node3D" unique_id=2006039767]
 

@@ -5,10 +5,12 @@
 [ext_resource type="Script" uid="uid://b6un8nviu3hcl" path="res://scripts/car_chassis_resource.gd" id="3_18b1i"]
 [ext_resource type="Resource" uid="uid://0qo1u8ouel8a" path="res://resources/chassis_light.tres" id="4_v0fcm"]
 [ext_resource type="Resource" uid="uid://bfg23g8eydosl" path="res://resources/chassis_heavy.tres" id="5_oyih7"]
+[ext_resource type="Resource" uid="uid://c3tnjsiqcro01" path="res://resources/chassis_medium.tres" id="6_8ish0"]
 [ext_resource type="Script" uid="uid://2r2fa6vlwgp1" path="res://scripts/car_wheels_resource.gd" id="6_oyih7"]
 [ext_resource type="Resource" uid="uid://cgk2134h3uyqa" path="res://resources/wheel_wood.tres" id="7_8ish0"]
 [ext_resource type="PackedScene" uid="uid://suu5jelbb82l" path="res://scenes/fade_overlay.tscn" id="7_18b1i"]
 [ext_resource type="Resource" uid="uid://2grudxv4j4h" path="res://resources/wheel_rubber.tres" id="8_4laxj"]
+[ext_resource type="Resource" uid="uid://cpkbw7gfjq18" path="res://resources/wheel_steel.tres" id="10_8ish0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnlqp"]
 albedo_color = Color(0.2801495, 0.26968017, 0.23827218, 1)
@@ -69,8 +71,8 @@ lbl_chassis_name = NodePath("MenuPanel/MarginContainer/Garage_VBoxContainer/HBox
 lbl_wheel_name = NodePath("MenuPanel/MarginContainer/Garage_VBoxContainer/HBoxContainer2/WheelsName")
 bar_weight = NodePath("MenuPanel/MarginContainer/Stats_VBoxContainer/WeightLabel/Bar_Weight")
 bar_grip = NodePath("MenuPanel/MarginContainer/Stats_VBoxContainer/GripLabel/Bar_Grip")
-chassis_options = Array[ExtResource("3_18b1i")]([ExtResource("4_v0fcm"), ExtResource("5_oyih7")])
-wheel_options = Array[ExtResource("6_oyih7")]([ExtResource("7_8ish0"), ExtResource("8_4laxj")])
+chassis_options = Array[ExtResource("3_18b1i")]([ExtResource("4_v0fcm"), ExtResource("6_8ish0"), ExtResource("5_oyih7")])
+wheel_options = Array[ExtResource("6_oyih7")]([ExtResource("7_8ish0"), ExtResource("8_4laxj"), ExtResource("10_8ish0")])
 race_scene_path = "uid://baawn2w8fbjpc"
 
 [node name="MenuPanel" type="PanelContainer" parent="HUD/UI" unique_id=1111368028]
@@ -110,6 +112,7 @@ size_flags_vertical = 4
 [node name="ChassisLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=205113270]
 layout_mode = 2
 text = "Chassis"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=1444629191]
 layout_mode = 2
@@ -130,6 +133,7 @@ text = ">"
 [node name="WheelsLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=1326692031]
 layout_mode = 2
 text = "Wheels"
+horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HUD/UI/MenuPanel/MarginContainer/Garage_VBoxContainer" unique_id=2121602973]
 layout_mode = 2
@@ -156,8 +160,9 @@ size_flags_vertical = 8
 
 [node name="WeightLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer" unique_id=2093122791]
 layout_mode = 2
-text = "Total Weight
+text = "Weight
 "
+horizontal_alignment = 1
 
 [node name="Bar_Weight" type="ProgressBar" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer/WeightLabel" unique_id=1993143399]
 layout_mode = 1
@@ -175,8 +180,9 @@ show_percentage = false
 
 [node name="GripLabel" type="Label" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer" unique_id=567028489]
 layout_mode = 2
-text = "Wheel Grip
+text = "Grip
 "
+horizontal_alignment = 1
 
 [node name="Bar_Grip" type="ProgressBar" parent="HUD/UI/MenuPanel/MarginContainer/Stats_VBoxContainer/GripLabel" unique_id=165514734]
 layout_mode = 1

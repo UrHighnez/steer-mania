@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CarChassisResource" format=3 uid="uid://c3tnjsiqcro01"]
+
+[ext_resource type="PackedScene" uid="uid://vnc31m8tbjx0" path="res://scenes/chassis_medium_visuals.tscn" id="1_5owbg"]
+[ext_resource type="Script" uid="uid://b6un8nviu3hcl" path="res://scripts/car_chassis_resource.gd" id="1_i1u88"]
+
+[resource]
+script = ExtResource("1_i1u88")
+display_name = "Medium Chassis"
+chassis_scene = ExtResource("1_5owbg")
+mass = 60.0
+metadata/_custom_type_script = "uid://b6un8nviu3hcl"

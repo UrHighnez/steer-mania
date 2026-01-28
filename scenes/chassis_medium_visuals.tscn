@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://vnc31m8tbjx0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lnxoo"]
+height = 2.6
+radius = 0.48876953
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnxoo"]
+resource_name = "woodBarkDark"
+albedo_color = Color(0.69, 0.4876, 0.414, 1)
+metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofw0f"]
+albedo_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+
+[sub_resource type="Gradient" id="Gradient_ut0pu"]
+colors = PackedColorArray(0.40832946, 0.40832946, 0.40832946, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ofw0f"]
+gradient = SubResource("Gradient_ut0pu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82g5y"]
+albedo_color = Color(0.3421062, 0.29018632, 0.22886753, 1)
+albedo_texture = SubResource("GradientTexture2D_ofw0f")
+
+[node name="ChassisLight" type="Node3D" unique_id=1271627818]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=134506888]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=412761014]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.205, 0)
+shape = SubResource("CylinderShape3D_lnxoo")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=213094515]
+transform = Transform3D(1.4, 0, 0, 0, -1.2239188e-07, -1.4, 0, 2.8, -6.119594e-08, 0, 0, 0)
+height = 1.0
+material = SubResource("StandardMaterial3D_lnxoo")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D" unique_id=1728934501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3113415e-08, 0.6)
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D" unique_id=1282109871]
+transform = Transform3D(0.6666667, 0, 0, 0, -1.4570462e-08, 0.33333334, 0, -0.6666667, -2.9140924e-08, 0, 0, 0)
+operation = 2
+radius = 0.4
+height = 2.577
+material = SubResource("StandardMaterial3D_ofw0f")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D" unique_id=144995215]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.5, 0)
+operation = 2
+material = SubResource("StandardMaterial3D_82g5y")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCylinder3D" unique_id=889712927]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.53, 0)
+operation = 2
+material = SubResource("StandardMaterial3D_82g5y")

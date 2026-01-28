@@ -1,7 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://basjryw3fg2gr"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2kvl0"]
-size = Vector3(1.4, 0.7, 2.8)
+[gd_scene format=3 uid="uid://basjryw3fg2gr"]
 
 [sub_resource type="Gradient" id="Gradient_2kvl0"]
 offsets = PackedFloat32Array(0.32307693, 0.9461538)
@@ -19,20 +16,29 @@ color_ramp = SubResource("Gradient_2kvl0")
 albedo_color = Color(0.24499999, 0.30275002, 0.35, 1)
 albedo_texture = SubResource("NoiseTexture2D_20m48")
 
-[node name="ChassisLight" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kvl0"]
+albedo_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0.002)
-shape = SubResource("BoxShape3D_2kvl0")
+[sub_resource type="BoxShape3D" id="BoxShape3D_2kvl0"]
+size = Vector3(1.4, 0.7, 2.8)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="ChassisLight" type="Node3D" unique_id=1150663709]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1886924120]
 size = Vector3(1.4, 1.4, 2.8)
 material = SubResource("StandardMaterial3D_qyfmr")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=1223751856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013153076, -0.5605492, -0.06261647)
 operation = 2
 size = Vector3(2.7799683, 0.9580078, 3.3321533)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D" unique_id=1194469279]
 operation = 2
+material = SubResource("StandardMaterial3D_2kvl0")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1723464253]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1236727619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0.002)
+shape = SubResource("BoxShape3D_2kvl0")

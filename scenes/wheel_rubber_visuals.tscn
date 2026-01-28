@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://crp3owinplplg"]
+[gd_scene format=3 uid="uid://crp3owinplplg"]
 
 [ext_resource type="ArrayMesh" uid="uid://dwky1cm1kvlps" path="res://models/wheel_mesh.res" id="1_c0nfd"]
 
 [sub_resource type="Gradient" id="Gradient_wo8rw"]
-colors = PackedColorArray(0.03839722, 0.03839716, 0.0383971, 1, 0.5449743, 0.54497427, 0.54497427, 1)
+colors = PackedColorArray(0.39308575, 0.39308548, 0.39308506, 1, 0.5449743, 0.54497427, 0.54497427, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_61f8y"]
 
@@ -12,8 +12,9 @@ noise = SubResource("FastNoiseLite_61f8y")
 color_ramp = SubResource("Gradient_wo8rw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo8rw"]
-albedo_color = Color(0.20871013, 0.20871016, 0.20871007, 1)
+albedo_color = Color(0.24840015, 0.24840018, 0.24840012, 1)
 albedo_texture = SubResource("NoiseTexture2D_d80my")
+metallic_specular = 0.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0hunk"]
 
@@ -26,35 +27,35 @@ text = "✕"
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwvly"]
 albedo_color = Color(0.34755024, 0.33882263, 0.31523573, 1)
 
-[node name="Rub" type="Node3D"]
+[node name="Rub" type="Node3D" unique_id=896915819]
 
-[node name="Cylinder" type="MeshInstance3D" parent="."]
+[node name="Cylinder" type="MeshInstance3D" parent="." unique_id=336098058]
 transform = Transform3D(-2.1855694e-08, 0.2, -2.1855694e-08, 0, -8.742278e-09, -0.5, -0.5, -8.742278e-09, 9.553427e-16, 0, 0, 0)
 mesh = ExtResource("1_c0nfd")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wo8rw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder" unique_id=569730565]
 transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_0hunk")
 surface_material_override/0 = SubResource("StandardMaterial3D_yxu14")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" unique_id=876648548]
 transform = Transform3D(-3.496911e-07, 8, -3.4969113e-07, 5.9095835e-14, -3.4969105e-07, -8, -8, -3.496911e-07, 8.552316e-22, 0.055118605, 0.9161444, -0.06060733)
 mesh = SubResource("TextMesh_2u56g")
 surface_material_override/0 = SubResource("StandardMaterial3D_hwvly")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinder/MeshInstance3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" unique_id=1656007319]
 transform = Transform3D(-5.656854, 5.656854, -2.4726896e-07, 3.410605e-13, -3.4969105e-07, -8, -5.656854, -5.656854, 2.4726896e-07, 0.005979337, 0.9161444, -0.11150907)
 mesh = SubResource("TextMesh_2u56g")
 surface_material_override/0 = SubResource("StandardMaterial3D_hwvly")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinder/MeshInstance3D"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" unique_id=438761784]
 transform = Transform3D(-3.496911e-07, 8, -3.4969113e-07, 5.9095835e-14, -3.4969105e-07, -8, -8, -3.496911e-07, -2.131628e-14, 0.055118628, -1, -0.060607307)
 mesh = SubResource("TextMesh_2u56g")
 surface_material_override/0 = SubResource("StandardMaterial3D_hwvly")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinder/MeshInstance3D"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinder/MeshInstance3D" unique_id=1967940599]
 transform = Transform3D(-5.656854, 5.656854, -2.4726896e-07, 3.410605e-13, -3.4969105e-07, -8, -5.656854, -5.656854, 2.4726896e-07, 0.00597936, -1, -0.11150904)
 mesh = SubResource("TextMesh_2u56g")
 surface_material_override/0 = SubResource("StandardMaterial3D_hwvly")
