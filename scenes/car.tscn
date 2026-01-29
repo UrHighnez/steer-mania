@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2h67xe24s0o7"]
+[gd_scene format=3 uid="uid://d2h67xe24s0o7"]
 
 [ext_resource type="Script" uid="uid://c13owiby5n1lo" path="res://scripts/car_controller.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://crp3owinplplg" path="res://scenes/wheel_rubber_visuals.tscn" id="2_jtldb"]
@@ -24,59 +24,61 @@ color_ramp = SubResource("Gradient_50v30")
 albedo_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 albedo_texture = SubResource("NoiseTexture2D_3mrxu")
 
-[node name="VehicleBody3D" type="VehicleBody3D" groups=["player"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtldb"]
+albedo_color = Color(0.072842635, 0.072842635, 0.072842635, 1)
+
+[node name="VehicleBody3D" type="VehicleBody3D" unique_id=340513400 groups=["player"]]
 collision_layer = 2
 mass = 20.0
-center_of_mass_mode = 1
 script = ExtResource("1_50v30")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=772406011]
 shape = SubResource("BoxShape3D_sskuf")
 
-[node name="ChassisMount" type="Node3D" parent="."]
+[node name="ChassisMount" type="Node3D" parent="." unique_id=1535315953]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=410701392]
 transform = Transform3D(1.5, 0, 0, 0, 0.15, 0, 0, 0, 3, 0, -0.08, 0)
 mesh = SubResource("BoxMesh_t3gmr")
 surface_material_override/0 = SubResource("StandardMaterial3D_50v30")
 
-[node name="VehicleWheel3D BR" type="VehicleWheel3D" parent="."]
+[node name="VehicleWheel3D BR" type="VehicleWheel3D" parent="." unique_id=1816397466]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -0.12, 1.2)
-wheel_roll_influence = 0.8
 wheel_friction_slip = 1.8
-suspension_stiffness = 50.0
 
-[node name="Wheel" parent="VehicleWheel3D BR" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D BR" unique_id=702259770 instance=ExtResource("2_jtldb")]
 
-[node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="."]
+[node name="VehicleWheel3D FR" type="VehicleWheel3D" parent="." unique_id=786703872]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -0.12, -1.2)
 use_as_traction = true
 use_as_steering = true
-wheel_roll_influence = 0.8
 wheel_friction_slip = 2.0
-suspension_stiffness = 50.0
 
-[node name="Wheel" parent="VehicleWheel3D FR" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D FR" unique_id=1175734096 instance=ExtResource("2_jtldb")]
 
-[node name="VehicleWheel3D BL" type="VehicleWheel3D" parent="."]
+[node name="VehicleWheel3D BL" type="VehicleWheel3D" parent="." unique_id=1611987034]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.12, 1.2)
-wheel_roll_influence = 0.8
 wheel_friction_slip = 1.8
-suspension_stiffness = 50.0
 
-[node name="Wheel" parent="VehicleWheel3D BL" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D BL" unique_id=163249469 instance=ExtResource("2_jtldb")]
 
-[node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="."]
+[node name="VehicleWheel3D FL" type="VehicleWheel3D" parent="." unique_id=1387571284]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.12, -1.2)
 use_as_traction = true
 use_as_steering = true
-wheel_roll_influence = 0.8
 wheel_friction_slip = 2.0
-suspension_stiffness = 50.0
 
-[node name="Wheel" parent="VehicleWheel3D FL" instance=ExtResource("2_jtldb")]
+[node name="Wheel" parent="VehicleWheel3D FL" unique_id=262930478 instance=ExtResource("2_jtldb")]
 
-[node name="Assembler" type="Node3D" parent="." node_paths=PackedStringArray("wheels_front", "wheels_back")]
+[node name="Assembler" type="Node3D" parent="." unique_id=318595895 node_paths=PackedStringArray("wheels_front", "wheels_back")]
 script = ExtResource("3_3mrxu")
 wheels_front = [NodePath("../VehicleWheel3D FR"), NodePath("../VehicleWheel3D FL")]
 wheels_back = [NodePath("../VehicleWheel3D BR"), NodePath("../VehicleWheel3D BL")]
+
+[node name="BackAxis" type="CSGCylinder3D" parent="." unique_id=1570561310]
+transform = Transform3D(-4.371139e-09, -1, 0, 0.1, -4.371139e-08, 0, 0, 0, 0.1, 0, -0.2, 1.2)
+material_override = SubResource("StandardMaterial3D_jtldb")
+
+[node name="FrontAxis" type="CSGCylinder3D" parent="." unique_id=1870858160]
+transform = Transform3D(-4.371139e-09, -1, 0, 0.1, -4.371139e-08, 0, 0, 0, 0.1, 0, -0.2, -1.2)
+material_override = SubResource("StandardMaterial3D_jtldb")
