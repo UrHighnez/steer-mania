@@ -8,6 +8,6 @@ script = ExtResource("1_hbpsm")
 display_name = "Steel Wheels"
 wheel_scene = ExtResource("2_hbpsm")
 mass = 7.5
-wheel_friction_slip = 1.0
+wheel_friction_slip = 2.0
 suspension_stiffness = 80.0
 metadata/_custom_type_script = "uid://2r2fa6vlwgp1"
