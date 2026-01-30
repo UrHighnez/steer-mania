@@ -1,11 +1,11 @@
 extends Resource
 class_name CarWheelResource
 
-@export_group("Optik")
+@export_group("Optics")
 @export var display_name: String = ""
 @export var wheel_scene: PackedScene
 
-@export_group("Physik & Handling")
+@export_group("Physics & Handling")
 # NEU: Das Gewicht pro Rad. 4 Räder machen das Auto schwerer!
 @export var mass: float = 5.0 
 

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c6qhp5wy42i7c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0e1h"]
+albedo_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqjcr"]
+albedo_color = Color(0.83005846, 0.19650671, 5.7756904e-07, 1)
+
+[node name="PropulsionBasic" type="Node3D" unique_id=81061736]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=644189437]
+transform = Transform3D(0.3, 0, 0, 0, -4.371139e-09, -0.3, 0, 0.1, -1.3113417e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_u0e1h")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D" unique_id=1034860818]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, -8.881784e-16, 0.7, 0, 0.95, -1.384194e-08)
+operation = 2
+material = SubResource("StandardMaterial3D_bqjcr")

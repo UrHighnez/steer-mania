@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CarPropulsionResource" format=3 uid="uid://mciybekk7hil"]
+
+[ext_resource type="Script" uid="uid://dsaponawtunp8" path="res://scripts/car_propulsion_resource.gd" id="1_r7qru"]
+[ext_resource type="PackedScene" uid="uid://c6qhp5wy42i7c" path="res://scenes/propulsion_basic.tscn" id="1_whavh"]
+
+[resource]
+script = ExtResource("1_r7qru")
+display_name = "Basic Propulsion"
+propulsion_scene = ExtResource("1_whavh")
+mass = 5.0
+metadata/_custom_type_script = "uid://dsaponawtunp8"
