@@ -39,18 +39,19 @@ func _apply_chassis(data: CarChassisResource):
 	if data.chassis_scene:
 		var new_chassis = data.chassis_scene.instantiate()
 		new_chassis.name = "ActiveChassis"
-		# Collision Logic (Dein Code)...
+		# Collision Logic
 		var shapes = new_chassis.find_children("*", "CollisionShape3D", true, false)
 		if shapes.size() > 0:
 			var found_shape = shapes[0]
 			found_shape.get_parent().remove_child(found_shape)
+			found_shape.owner = null
 			found_shape.name = "ActiveChassisShape"
 			car.add_child.call_deferred(found_shape)
 		mount_point.add_child.call_deferred(new_chassis)
 		new_chassis.position = Vector3.ZERO
 		new_chassis.rotation = Vector3.ZERO
 
-	# Achsen setzen (Dein Code)...
+	# Achsen setzen
 	var half_width = data.axle_width / 2.0
 	for wheel in wheels_front:
 		var side = sign(wheel.position.x); if side == 0: side = 1 
@@ -65,7 +66,6 @@ func _apply_propulsion(data: CarPropulsionResource):
 	var car = get_parent()
 	
 	# Wir brauchen einen Mount-Point hinten am Auto
-	# Tipp: Erstelle einen Node3D namens "PropulsionMount" in deiner Car-Szene!
 	var mount_point = car.get_node_or_null("PropulsionMount")
 	
 	if mount_point:
@@ -78,7 +78,6 @@ func _apply_propulsion(data: CarPropulsionResource):
 			var vis = data.propulsion_scene.instantiate()
 			mount_point.add_child(vis)
 	
-	# WICHTIG: Masse hinzufügen statt überschreiben!
 	# Wir addieren das Gewicht der Rakete zum Chassis
 	car.mass += data.mass
 	
@@ -91,7 +90,7 @@ func _apply_wheels(data: CarWheelResource):
 	var car = get_parent()
 	var all_wheels = wheels_front + wheels_back
 	
-	# --- MASSE BERECHNUNG UPDATED ---
+	# --- MASSE BERECHNUNG ---
 	# Wir holen die AKTUELLE Masse (Chassis + Propulsion wurde oben schon gesetzt)
 	var current_body_mass = car.mass 
 	

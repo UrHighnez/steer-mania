@@ -176,6 +176,12 @@ func _load_best_time() -> float:
 		if file: return file.get_float()
 	return 999999.0
 
+func _on_reset_pb_pressed():
+	var dir = DirAccess.open("user://")
+	if dir and dir.file_exists("best_time.save"):
+		dir.remove("best_time.save")
+	_display_personal_best()
+
 func _format_time(time_val: float) -> String:
 	var minutes = int(time_val / 60)
 	var seconds = int(time_val) % 60

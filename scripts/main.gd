@@ -13,6 +13,7 @@ extends Node3D
 var elapsed_time: float = 0.0
 var best_time: float = 999999.0
 var is_racing: bool = false
+var is_transitioning: bool = false
 const SAVE_PATH = "user://best_time.save"
 
 func _ready():
@@ -90,14 +91,18 @@ func load_best_time():
 			file.close()
 
 func reset_level():
-	get_tree().reload_current_scene()
+	is_transitioning = true
+	get_tree().reload_current_scene.call_deferred()
 
 func _on_course_boundary_exited(body):
-	if body.is_in_group("player"):
+	if is_racing and not is_transitioning and body.is_in_group("player"):
 		print("Off track! Resetting...")
 		reset_level()
 
 func fade_and_exit():
+	if is_transitioning: return
+	is_transitioning = true
+
 	var tween = create_tween()
 	tween.tween_property(fade_overlay, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
 	await tween.finished

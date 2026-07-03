@@ -68,40 +68,55 @@ func _spawn_real_nodes():
 		var query = PhysicsRayQueryParameters3D.create(global_ray_start, global_ray_end)
 		var result = space_state.intersect_ray(query)
 		
-		if result and result.collider is StaticBody3D and result.collider.is_in_group("terrain"):
+		# Diagnostik 1: Trifft der Ray überhaupt etwas?
+		if not result:
+			print("Fehler: Raycast trifft nichts. (Position: ", global_ray_start, ")")
+			continue
 			
-			# Slope Check
-			var normal = result.normal
-			var slope_angle = rad_to_deg(normal.angle_to(Vector3.UP))
-			if slope_angle > max_slope_angle:
-				continue 
+		var col = result.collider
+		
+		# Diagnostik 2: Ist das getroffene Objekt ein StaticBody3D?
+		if not col is StaticBody3D:
+			print("Fehler: Objekt ist kein StaticBody3D. Typ: ", col.get_class(), " | Name: ", col.name)
+			continue
+			
+		# Diagnostik 3: Hat das Objekt die richtige Gruppe?
+		if not (col.is_in_group("terrain") or col.get_parent().is_in_group("terrain")):
+			print("Fehler: Weder ", col.name, " noch Parent ", col.get_parent().name, " haben die Gruppe 'terrain'.")
+			continue
+			
+		# Slope Check
+		var normal = result.normal
+		var slope_angle = rad_to_deg(normal.angle_to(Vector3.UP))
+		if slope_angle > max_slope_angle:
+			continue
 
-			hits += 1
-			
-			# 1. Wir ermitteln den INDEX des gewählten Meshes
-			var selected_index = _get_weighted_index()
-			var selected_mesh = scatter_meshes[selected_index]
-			
-			# 2. Wir suchen das passende individuelle Offset
-			var individual_offset = 0.0
-			if selected_index < scatter_y_offsets.size():
-				individual_offset = scatter_y_offsets[selected_index]
-			
-			var obj_instance = MeshInstance3D.new()
-			obj_instance.mesh = selected_mesh
-			obj_instance.name = "GenObject_" + str(hits)
-			
-			add_child(obj_instance)
-			obj_instance.owner = root 
-			
-			obj_instance.global_position = result.position
-			
-			# 3. Addition: Globale Höhe + Individuelle Korrektur
-			obj_instance.global_position.y += global_y_offset + individual_offset
-			
-			obj_instance.rotate_y(randf() * TAU)
-			var s = randf_range(min_scale, max_scale)
-			obj_instance.scale = Vector3(s, s, s)
+		hits += 1
+
+		# 1. Wir ermitteln den INDEX des gewählten Meshes
+		var selected_index = _get_weighted_index()
+		var selected_mesh = scatter_meshes[selected_index]
+
+		# 2. Wir suchen das passende individuelle Offset
+		var individual_offset = 0.0
+		if selected_index < scatter_y_offsets.size():
+			individual_offset = scatter_y_offsets[selected_index]
+
+		var obj_instance = MeshInstance3D.new()
+		obj_instance.mesh = selected_mesh
+		obj_instance.name = "GenObject_" + str(hits)
+
+		add_child(obj_instance)
+		obj_instance.owner = root
+
+		obj_instance.global_position = result.position
+
+		# 3. Addition: Globale Höhe + Individuelle Korrektur
+		obj_instance.global_position.y += global_y_offset + individual_offset
+
+		obj_instance.rotate_y(randf() * TAU)
+		var s = randf_range(min_scale, max_scale)
+		obj_instance.scale = Vector3(s, s, s)
 			
 	print("FERTIG: ", hits, " Objekte gepflanzt. Versuche: ", attempts)
 

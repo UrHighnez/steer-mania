@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://y2nl2xuamjcj"]
+
+[ext_resource type="Shader" uid="uid://bymjogj6vx7o1" path="res://render/shaders/terrain_height.gdshader" id="1_terrain"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_terrain")
+shader_parameter/wet_sand_color = Color(0.26554185, 0.34280097, 0.119086616, 1)
+shader_parameter/dry_sand_color = Color(0.3688778, 0.35925823, 0.22002357, 1)
+shader_parameter/grass_color = Color(0.17639744, 0.29305908, 0.10216118, 1)
+shader_parameter/rock_color = Color(0.38488263, 0.34813794, 0.3180345, 1)
+shader_parameter/wet_sand_y = -421.0
+shader_parameter/dry_sand_y = -420.0
+shader_parameter/grass_y = -400.0
+shader_parameter/rock_y = 200.0
+shader_parameter/slope_rock_start = 0.10000000475
+shader_parameter/slope_rock_end = 0.13800000585648
+shader_parameter/slope_rock_strength = 0.90000004275
+shader_parameter/rock_noise_amp = 0.22
+shader_parameter/rock_noise_scale = 0.1
+shader_parameter/underwater_rock_darken = 1.0
+shader_parameter/underwater_darken_depth = 0.5
+shader_parameter/roughness_value = 0.9
+shader_parameter/specular_value = 0.2
